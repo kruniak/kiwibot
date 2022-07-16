@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int     @id @default(autoincrement())
+  telegramId   Int     @unique
+  username     String? @unique
+  displayName  String
+  petsReceived Pet[]   @relation("petted")
+  petsGiven    Pet[]   @relation("petter")
+}
+
+model Pet {
+  id       Int      @id @default(autoincrement())
+  time     DateTime @default(now())
+  petterId Int
+  pettedId Int
+  petted   User     @relation("petted", fields: [pettedId], references: [id])
+  petter   User     @relation("petter", fields: [petterId], references: [id])
+}
+
+model StickerCategory {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  stickers Sticker[]
+}
+
+model StickerSet {
+  id       Int       @id @default(autoincrement())
+  setName  String    @unique
+  stickers Sticker[]
+}
+
+model Sticker {
+  id                Int             @id @default(autoincrement())
+  time              DateTime        @default(now())
+  file_id           String          @unique
+  stickerSetId      Int
+  stickerCategoryId Int
+  stickerCategory   StickerCategory @relation(fields: [stickerCategoryId], references: [id])
+  stickerSet        StickerSet      @relation(fields: [stickerSetId], references: [id])
+}
