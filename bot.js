@@ -22,6 +22,10 @@ const registerEvents = () => {
   bot.on('message', async (ctx, next) => {
     const telegramId = ctx.message.from.id;
 
+    if (ctx.chat.type !== 'private') {
+      return;
+    }
+
     if (ctx.message.sticker) {
       shouldAskForStickerCategory = true;
       shouldListenForStickerCategory = false;
