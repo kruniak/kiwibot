@@ -25,12 +25,6 @@ model Pet {
   petter   User     @relation("petter", fields: [petterId], references: [id])
 }
 
-model StickerCategory {
-  id       Int       @id @default(autoincrement())
-  name     String    @unique
-  stickers Sticker[]
-}
-
 model StickerSet {
   id       Int       @id @default(autoincrement())
   setName  String    @unique
@@ -38,11 +32,25 @@ model StickerSet {
 }
 
 model Sticker {
-  id                Int             @id @default(autoincrement())
-  time              DateTime        @default(now())
-  file_id           String          @unique
-  stickerSetId      Int
-  stickerCategoryId Int
-  stickerCategory   StickerCategory @relation(fields: [stickerCategoryId], references: [id])
-  stickerSet        StickerSet      @relation(fields: [stickerSetId], references: [id])
+  id           Int                         @id @default(autoincrement())
+  file_id      String                      @unique
+  stickerSetId Int
+  createdAt    DateTime                    @default(now())
+  stickerSet   StickerSet                  @relation(fields: [stickerSetId], references: [id])
+  categories   StickerCategoryOnStickers[]
+}
+
+model StickerCategory {
+  id       Int                         @id @default(autoincrement())
+  name     String                      @unique
+  stickers StickerCategoryOnStickers[]
+}
+
+model StickerCategoryOnStickers {
+  stickerId  Int
+  categoryId Int
+  category   StickerCategory @relation(fields: [categoryId], references: [id])
+  sticker    Sticker         @relation(fields: [stickerId], references: [id])
+
+  @@id([stickerId, categoryId])
 }

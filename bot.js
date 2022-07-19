@@ -23,7 +23,7 @@ const registerEvents = () => {
     const telegramId = ctx.message.from.id;
 
     if (ctx.chat.type !== 'private') {
-      return;
+      return next();
     }
 
     if (ctx.message.sticker) {
@@ -69,11 +69,29 @@ const registerEvents = () => {
 
       stickerSetName = '';
 
+      // await prisma.sticker.create({
+      //   data: {
+      //     file_id: stickerId,
+      //     stickerSetId: set.id,
+      //     stickerCategoryId: category.id
+      //   }
+      // });
+
       await prisma.sticker.create({
         data: {
           file_id: stickerId,
           stickerSetId: set.id,
-          stickerCategoryId: category.id
+          categories: {
+            create: [
+              {
+                category: {
+                  connect: {
+                    id: category.id
+                  }
+                }
+              }
+            ]
+          }
         }
       });
 
@@ -106,13 +124,34 @@ const registerEvents = () => {
     return next();
   });
 
-  bot.command('/tired', async ctx => {
+  // bot.command('/tired', async ctx => {
+  //   const category = await prisma.stickerCategory.findUnique({
+  //     where: { name: 'tired' }
+  //   });
+
+  //   const stickers = await prisma.sticker.findMany({
+  //     where: { stickerCategoryId: category.id }
+  //   });
+
+  //   const offset = Math.floor(Math.random() * stickers.length);
+
+  //   return ctx.replyWithSticker(stickers[offset].file_id);
+  // });
+
+  bot.command('/angry', async ctx => {
     const category = await prisma.stickerCategory.findUnique({
-      where: { name: 'tired' }
+      where: { name: 'angry' }
     });
 
+
     const stickers = await prisma.sticker.findMany({
-      where: { stickerCategoryId: category.id }
+      where: {
+        categories: {
+          some: {
+            categoryId: category.id
+          }
+        }
+      }
     });
 
     const offset = Math.floor(Math.random() * stickers.length);
@@ -121,6 +160,8 @@ const registerEvents = () => {
   });
 
   bot.command('/help', ctx => {
+    // TODO: print oracle turret lines sometimes instead of actual help or send/forward sound 8)
+
     ctx.reply(`
     hi
     `);
@@ -206,7 +247,7 @@ const registerEvents = () => {
       }
     });
 
-    const pet = await prisma.pet.create({
+    await prisma.pet.create({
       data: {
         petterId: petter.id,
         pettedId: petted.id
