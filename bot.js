@@ -1,3 +1,6 @@
+const path = require('path');
+const fs = require('fs');
+
 const { Telegraf } = require('telegraf');
 const { PrismaClient } = require('@prisma/client');
 
@@ -22,83 +25,83 @@ const registerEvents = () => {
   bot.on('message', async (ctx, next) => {
     const telegramId = ctx.message.from.id;
 
-    if (ctx.chat.type !== 'private') {
-      return next();
-    }
+    // if (ctx.chat.type !== 'private') {
+    //   return next();
+    // }
 
-    if (ctx.message.sticker) {
-      shouldAskForStickerCategory = true;
-      shouldListenForStickerCategory = false;
+    // if (ctx.message.sticker) {
+    //   shouldAskForStickerCategory = true;
+    //   shouldListenForStickerCategory = false;
 
-      user_id = ctx.message.from.id;
-      stickerId = ctx.message.sticker.file_id;
-      stickerSetName = ctx.message.sticker.set_name;
-    }
+    //   user_id = ctx.message.from.id;
+    //   stickerId = ctx.message.sticker.file_id;
+    //   stickerSetName = ctx.message.sticker.set_name;
+    // }
 
-    if (shouldAskForStickerCategory && ctx.message.from.id == user_id) {
-      shouldAskForStickerCategory = false;
-      shouldListenForStickerCategory = true;
+    // if (shouldAskForStickerCategory && ctx.message.from.id == user_id) {
+    //   shouldAskForStickerCategory = false;
+    //   shouldListenForStickerCategory = true;
 
-      return ctx.reply('What category?');
-    }
+    //   return ctx.reply('What category?');
+    // }
 
-    if (shouldListenForStickerCategory && ctx.message.from.id == user_id) {
-      shouldListenForStickerCategory = false;
+    // if (shouldListenForStickerCategory && ctx.message.from.id == user_id) {
+    //   shouldListenForStickerCategory = false;
 
-      const category = await prisma.stickerCategory.findUnique({
-        where: { name: ctx.message.text }
-      });
+    //   const category = await prisma.stickerCategory.findUnique({
+    //     where: { name: ctx.message.text }
+    //   });
 
-      if (!category) {
-        stickerId = '';
-        stickerSetName = '';
-        return ctx.reply('That category was not found.');
-      }
+    //   if (!category) {
+    //     stickerId = '';
+    //     stickerSetName = '';
+    //     return ctx.reply('That category was not found.');
+    //   }
 
-      let set = await prisma.stickerSet.findUnique({
-        where: { setName: stickerSetName }
-      });
+    //   let set = await prisma.stickerSet.findUnique({
+    //     where: { setName: stickerSetName }
+    //   });
 
-      if (!set) {
-        set = await prisma.stickerSet.create({
-          data: {
-            setName: stickerSetName
-          }
-        });
-      }
+    //   if (!set) {
+    //     set = await prisma.stickerSet.create({
+    //       data: {
+    //         setName: stickerSetName
+    //       }
+    //     });
+    //   }
 
-      stickerSetName = '';
+    //   stickerSetName = '';
 
-      // await prisma.sticker.create({
-      //   data: {
-      //     file_id: stickerId,
-      //     stickerSetId: set.id,
-      //     stickerCategoryId: category.id
-      //   }
-      // });
+    //   // await prisma.sticker.create({
+    //   //   data: {
+    //   //     file_id: stickerId,
+    //   //     stickerSetId: set.id,
+    //   //     stickerCategoryId: category.id
+    //   //   }
+    //   // });
 
-      await prisma.sticker.create({
-        data: {
-          file_id: stickerId,
-          stickerSetId: set.id,
-          categories: {
-            create: [
-              {
-                category: {
-                  connect: {
-                    id: category.id
-                  }
-                }
-              }
-            ]
-          }
-        }
-      });
+    //   await prisma.sticker.create({
+    //     data: {
+    //       file_id: stickerId,
+    //       stickerSetId: set.id,
+    //       categories: {
+    //         create: [
+    //           {
+    //             category: {
+    //               connect: {
+    //                 id: category.id
+    //               }
+    //             }
+    //           }
+    //         ]
+    //       }
+    //     }
+    //   });
 
-      stickerId = '';
+    //   stickerId = '';
 
-      return ctx.replyWithMarkdown(`Sticker added to _${category.name}_ category.`);
-    }
+    //   return ctx.replyWithMarkdown(`Sticker added to _${category.name}_ category.`);
+    // }
 
     const user = await prisma.user.findUnique({
       where: {
@@ -167,6 +170,25 @@ const registerEvents = () => {
     `);
   });
 
+  bot.command('/turret', ctx => {
+    // TODO: have a generic class that hosts and caches assets
+
+    // const audioFiles = fs.readdirSync('./assets/turret/');
+
+    // var randomAudioFile = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+
+    //return ctx.replyWithAudio('https://i1.theportalwiki.net/img/4/45/Turret_turretstuckintube09.wav');
+
+    return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`);
+  });
+
+  bot.on('new_chat_members', ctx => {
+    ctx.replyWithVoice('https://github.com/drake-321/drake-321.github.io/raw/main/part1_entry-1.ogg');
+  });
+
+  //
+  // e621 thing
+  //
   bot.command('/post', async (ctx) => {
     if (ctx.message.text.split(' ').length > 1) {
       var tags = ctx.message.text.split(' ').slice(1).join('+');
@@ -182,14 +204,16 @@ const registerEvents = () => {
     if (ctx.message.text.split(' ').length === 2) {
       var username = ctx.message.text.split(' ').slice(1).join(' ');
     } else {
-      ctx.reply('People want free hugs!\nMention someone to give them a huggie! ~');
+      ctx.reply('People want free hugs!\nMention someone to give them a huggie! ~', {
+        reply_to_message_id: ctx.message.message_id
+      });
       return next();
     }
 
     const result = await eapi.search('hugging affection');
-    const message = `${senderName} _hugs_ ${username}\n${result}.\n`;
+    const message = `${senderName} hugs ${username}\n${result}.\n`;
 
-    return ctx.replyWithMarkdown(message);
+    return ctx.reply(message);
   });
 
   bot.command('/petstats', async ctx => {
