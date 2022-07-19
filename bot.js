@@ -21,9 +21,13 @@ let user_id = '';
 let stickerId = '';
 let stickerSetName = '';
 
+let chatId = null;
+
 const registerEvents = () => {
   bot.on('message', async (ctx, next) => {
     const telegramId = ctx.message.from.id;
+
+    chatId = ctx.message.chat.id;
 
     // if (ctx.chat.type !== 'private') {
     //   return next();
@@ -140,6 +144,10 @@ const registerEvents = () => {
 
   //   return ctx.replyWithSticker(stickers[offset].file_id);
   // });
+
+  setInterval(() => {
+    // bot.telegram.sendVoice(chatId, `https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`);
+  }, 30000);
 
   bot.command('/angry', async ctx => {
     const category = await prisma.stickerCategory.findUnique({

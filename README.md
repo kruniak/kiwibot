@@ -7,7 +7,7 @@ tags blacklist add and remove commands
 syntax
 /lewd tags [...]  (! for blacklisting)
 
-big brother that appears sometimes whenever a user is typing
+turret or glados appear sometimes whenever users are typing
 
 pats, pats stats
 
@@ -22,4 +22,6 @@ save sticker set ids so that the bot will try to retrieve a matching sticker fro
 category and set that was selected by the user (/useset {id} /listsets with ids). if none was found it will just send
 some random one
 
-setting feature: tag stickers as NSFW. ask for confirmation whenever a user sends one if he wants to be prompted.
+setting feature: tag stickers as NSFW. allow users to enable/disable them
+
+handle ONE single group in my case. (ideally group whitelist / password when invited)
