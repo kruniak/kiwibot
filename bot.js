@@ -173,9 +173,7 @@ const registerEvents = () => {
   bot.command('/help', ctx => {
     // TODO: print oracle turret lines sometimes instead of actual help or send/forward sound 8)
 
-    ctx.reply(`
-    hi
-    `);
+    return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`);
   });
 
   bot.command('/turret', ctx => {
