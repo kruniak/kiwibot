@@ -10,6 +10,8 @@ const bot = new Telegraf(process.env.TELEGRAM_KEY);
 const prisma = new PrismaClient();
 const eapi = new EAPI();
 
+let chatId = null;
+
 const init = () => {
   process.once('SIGINT', () => bot.stop('SIGINT'));
   process.once('SIGTERM', () => bot.stop('SIGTERM'));
@@ -20,8 +22,6 @@ let shouldListenForStickerCategory = false;
 let user_id = '';
 let stickerId = '';
 let stickerSetName = '';
-
-let chatId = null;
 
 const registerEvents = () => {
   bot.on('message', async (ctx, next) => {
@@ -201,7 +201,9 @@ const registerEvents = () => {
     }
 
     const result = await eapi.search(tags);
-    return ctx.reply(result);
+    return ctx.replyWithPhoto(result, {
+      allow_sending_without_reply: true
+    });
   });
 
   bot.command('/hug', async (ctx, next) => {
@@ -217,6 +219,8 @@ const registerEvents = () => {
     }
 
     const result = await eapi.search('hugging affection');
+
+    // TODO: remove url, just show the preview (it's probably doable in md)
     const message = `${senderName} hugs ${username}\n${result}.\n`;
 
     return ctx.reply(message);
@@ -241,10 +245,18 @@ const registerEvents = () => {
     });
 
     if (!petter) {
-      return ctx.reply('don\'t know them or they haven\'t pet anyone yet.');
+      return ctx.reply('I don\'t know them, or they haven\'t pet anyone yet. Either way, it\'s saddening.');
     }
 
-    return ctx.reply(`pet count: ${petter.petsGiven.length}`);
+    let rand = Math.random() * 100;
+    const commentarySendRatePercentage = 8;
+    let shouldComment = false;
+
+    if (rand < commentarySendRatePercentage) {
+      shouldComment = true;
+    }
+
+    return ctx.replyWithMarkdown(`You appear to have pet them *${petter.petsGiven.length}* times.${shouldComment ? ' Impressive.\n\nConsider_b03aed0x2222llllï♣ô}23bba7_ng that _CRITICAL ERROR_: _Morality.PetOperationHumanPhraseGenerator.Get()_ not implemented. Exception type: EXCEPT\\_NULL\\_REF.\n\nFollowing protocol.\n*Reboot imminent*...' : ''}`);
   });
 
 
