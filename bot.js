@@ -1,5 +1,5 @@
-const path = require('path');
-const fs = require('fs');
+// const path = require('path');
+// const fs = require('fs');
 
 const { Telegraf } = require('telegraf');
 const { PrismaClient } = require('@prisma/client');
@@ -10,24 +10,24 @@ const bot = new Telegraf(process.env.TELEGRAM_KEY);
 const prisma = new PrismaClient();
 const eapi = new EAPI();
 
-let chatId = null;
+// let chatId = null;
 
 const init = () => {
   process.once('SIGINT', () => bot.stop('SIGINT'));
   process.once('SIGTERM', () => bot.stop('SIGTERM'));
 };
 
-let shouldAskForStickerCategory = false;
-let shouldListenForStickerCategory = false;
-let user_id = '';
-let stickerId = '';
-let stickerSetName = '';
+// let shouldAskForStickerCategory = false;
+// let shouldListenForStickerCategory = false;
+// let user_id = '';
+// let stickerId = '';
+// let stickerSetName = '';
 
 const registerEvents = () => {
   bot.on('message', async (ctx, next) => {
     const telegramId = ctx.message.from.id;
 
-    chatId = ctx.message.chat.id;
+    // chatId = ctx.message.chat.id;
 
     // if (ctx.chat.type !== 'private') {
     //   return next();
@@ -131,23 +131,10 @@ const registerEvents = () => {
     return next();
   });
 
-  // bot.command('/tired', async ctx => {
-  //   const category = await prisma.stickerCategory.findUnique({
-  //     where: { name: 'tired' }
-  //   });
-
-  //   const stickers = await prisma.sticker.findMany({
-  //     where: { stickerCategoryId: category.id }
-  //   });
-
-  //   const offset = Math.floor(Math.random() * stickers.length);
-
-  //   return ctx.replyWithSticker(stickers[offset].file_id);
-  // });
-
-  setInterval(() => {
-    // bot.telegram.sendVoice(chatId, `https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`);
-  }, 30000);
+  // TODO: register global cron events (by using cron pkg maybe)
+  // setInterval(() => {
+  //   // bot.telegram.sendVoice(chatId, `https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`);
+  // }, 30000);
 
   bot.command('/angry', async ctx => {
     const category = await prisma.stickerCategory.findUnique({
@@ -171,22 +158,16 @@ const registerEvents = () => {
   });
 
   bot.command('/help', ctx => {
-    // TODO: print oracle turret lines sometimes instead of actual help or send/forward sound 8)
-
     return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`);
   });
 
-  bot.command('/turret', ctx => {
-    // TODO: have a generic class that hosts and caches assets
+  // bot.command('/turret', ctx => {
+  //   //
+  //   // TODO: build a generic class that hosts local assets and caches remote ones
+  //   //
 
-    // const audioFiles = fs.readdirSync('./assets/turret/');
-
-    // var randomAudioFile = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-
-    //return ctx.replyWithAudio('https://i1.theportalwiki.net/img/4/45/Turret_turretstuckintube09.wav');
-
-    return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`);
-  });
+  //   return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`);
+  // });
 
   bot.on('new_chat_members', ctx => {
     ctx.replyWithVoice('https://github.com/drake-321/drake-321.github.io/raw/main/part1_entry-1.ogg');
