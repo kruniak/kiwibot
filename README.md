@@ -1,4 +1,6 @@
 # kiwibot
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 
 ## TODOS
 constraint at least two requests per second as the docs state
