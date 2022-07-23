@@ -28,4 +28,4 @@ setting feature: tag stickers as NSFW. allow users to enable/disable them
 
 handle ONE single group in my case. (ideally group whitelist / password when invited)
 
-hello command that sends a turret "hello" voice message
+hello command that sends a turret "hello" voice messagses
