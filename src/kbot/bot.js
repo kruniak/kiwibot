@@ -29,6 +29,12 @@ class Bot {
     const { bot } = this;
 
     bot.on('message', async (ctx, next) => {
+      // ignore private messages
+      if (ctx.chat.type === 'private') {
+        ctx.reply('hello?');
+        next();
+      }
+
       const senderId = ctx.message.from.id;
 
       const username = ctx.message.from.username;
