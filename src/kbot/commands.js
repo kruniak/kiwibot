@@ -1,5 +1,6 @@
 const InteractionCommands = require('./commands/interaction');
 const StatsCommands = require('./commands/stats');
+const BooruCommands = require('./commands/booru');
 
 // TODO: register sticker commands programmatically
 //  by reading category table for the name (command string)
