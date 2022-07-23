@@ -119,6 +119,9 @@ class Hug extends Command {
 
     const result = await api.getRandomPostFromTags('hugging affection');
 
+    // TODO: check if we have username in db: if so, print displayName instead
+    // NOTE: i think username changes could lead to inconsistencies in edge-cases
+
     const caption = `${senderName} hugs ${username}`;
 
     return ctx.replyWithPhoto(result, {

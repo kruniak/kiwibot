@@ -4,6 +4,8 @@ const db = require('../../db');
 // stickers setup
 //
 const stickerCommandHandler = async ctx => {
+  const replyToMessage = ctx.message.reply_to_message;
+
   // get sticker category
   const categoryName = ctx.message.text.slice(1);
 
@@ -28,7 +30,15 @@ const stickerCommandHandler = async ctx => {
 
   const offset = Math.floor(Math.random() * stickers.length);
 
-  return ctx.replyWithSticker(stickers[offset].file_id);
+  const stickerFileId = stickers[offset].file_id;
+
+  if (replyToMessage) {
+    return ctx.replyWithSticker(stickerFileId, {
+      reply_to_message_id: replyToMessage.message_id
+    });
+  }
+
+  return ctx.replyWithSticker(stickerFileId);
 };
 
 module.exports = (async function() {

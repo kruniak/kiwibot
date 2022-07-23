@@ -7,7 +7,7 @@ const commandsList = [
   ...HelpCommands,
   ...InteractionCommands,
   ...StatsCommands,
-  ...BooruCommands,
+  ...BooruCommands
 ];
 
 const registerAllCommands = bot => {
