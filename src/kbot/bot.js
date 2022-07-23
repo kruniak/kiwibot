@@ -85,6 +85,8 @@ class Bot {
     });
 
     bot.on('new_chat_members', async(ctx, next) => {
+      // TODO: check if not self. it will welcome itself when invited to a group
+
       ctx.replyWithVoice('https://github.com/drake-321/drake-321.github.io/raw/main/part1_entry-1.ogg');
       return next();
     });
