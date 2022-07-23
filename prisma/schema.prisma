@@ -8,12 +8,15 @@ datasource db {
 }
 
 model User {
-  id           Int     @id @default(autoincrement())
-  telegramId   Int     @unique
-  username     String? @unique
-  displayName  String?
-  petsReceived Pet[]   @relation("petted")
-  petsGiven    Pet[]   @relation("petter")
+  id                  Int                 @id @default(autoincrement())
+  telegramId          Int                 @unique
+  username            String?             @unique
+  displayName         String?
+  patsReceived        Pat[]               @relation("patted")
+  patsGiven           Pat[]               @relation("patter")
+  petsReceived        Pet[]               @relation("petted")
+  petsGiven           Pet[]               @relation("petter")
+  favoriteStickerSets StickerSetOnUsers[]
 }
 
 model Pet {
@@ -25,10 +28,30 @@ model Pet {
   petter   User     @relation("petter", fields: [petterId], references: [id])
 }
 
+model Pat {
+  id       Int      @id @default(autoincrement())
+  time     DateTime @default(now())
+  patterId Int
+  pattedId Int
+  patted   User     @relation("patted", fields: [pattedId], references: [id])
+  patter   User     @relation("patter", fields: [patterId], references: [id])
+}
+
 model StickerSet {
-  id       Int       @id @default(autoincrement())
-  setName  String    @unique
-  stickers Sticker[]
+  id            Int                 @id @default(autoincrement())
+  setName       String              @unique
+  stickers      Sticker[]
+  favoriteUsers StickerSetOnUsers[]
+}
+
+model StickerSetOnUsers {
+  timeAdded    DateTime   @default(now())
+  stickerSetId Int
+  userId       Int
+  stickerSet   StickerSet @relation(fields: [stickerSetId], references: [id])
+  user         User       @relation(fields: [userId], references: [id])
+
+  @@id([stickerSetId, userId])
 }
 
 model Sticker {
@@ -43,6 +66,7 @@ model Sticker {
 model StickerCategory {
   id       Int                         @id @default(autoincrement())
   name     String                      @unique
+  nsfw     Boolean
   stickers StickerCategoryOnStickers[]
 }
 

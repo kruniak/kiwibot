@@ -1,5 +1,5 @@
-const Pet = require('./commands/interaction');
-const PetStats = require('./commands/stats');
+const InteractionCommands = require('./commands/interaction');
+const StatsCommands = require('./commands/stats');
 
 // TODO: register sticker commands programmatically
 //  by reading category table for the name (command string)
@@ -8,11 +8,8 @@ const PetStats = require('./commands/stats');
 // [...Stickers].forEach
 
 const commandsList = [
-  new Pet(),
-  new PetStats()
-  // new Help,
-  // new Hug,
-  // new Post,
+  ...InteractionCommands,
+  ...StatsCommands
 ];
 
 // expects a Telegraf bot instance as paramater

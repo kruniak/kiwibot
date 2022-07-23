@@ -5,8 +5,8 @@ const { exec } = require('child_process');
 
 require('dotenv').config();
 
-// serve assets
-exec('npx http-server assets');
+// // serve assets
+// exec('npx http-server assets');
 
 const Kbot = require('./kbot/bot');
 

@@ -41,4 +41,40 @@ class PetStats extends Command {
   };
 }
 
-module.exports = PetStats;
+class PatStats extends Command {
+  constructor() {
+    super('patstats');
+  }
+
+  commandHandler = async ctx => {
+    const { db } = this;
+
+    const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
+
+    if (!mention) {
+      return ctx.reply('who?');
+    }
+
+    const patterUsername = ctx.message.text.substring(mention.offset + 1, mention.offset + mention.length + 1);
+
+    const patter = await db.user.findUnique({
+      where: {
+        username: patterUsername
+      },
+      include: {
+        patsGiven: true
+      }
+    });
+
+    if (!patter) {
+      return ctx.reply('I don\'t know them, or they haven\'t pat anyone yet.');
+    }
+
+    return ctx.replyWithMarkdown(`You appear to have pat them *${patter.patsGiven.length}* times.`);
+  };
+}
+
+module.exports = [
+  new PetStats(),
+  new PatStats()
+];
