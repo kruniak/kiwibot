@@ -169,10 +169,6 @@ const registerEvents = () => {
   //   return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`);
   // });
 
-  bot.on('new_chat_members', ctx => {
-    ctx.replyWithVoice('https://github.com/drake-321/drake-321.github.io/raw/main/part1_entry-1.ogg');
-  });
-
   //
   // e621 thing
   //

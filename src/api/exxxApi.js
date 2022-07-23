@@ -8,7 +8,7 @@ axios.defaults.headers.get = {
   'User-Agent': 'SFW bot for a small group of friends and practice',
 };
 
-class EAPI {
+class EXXXApi {
   search = async tags => {
     try {
       var res = await axios.get(`${BASEURL}/posts.json`, {
@@ -36,4 +36,4 @@ class EAPI {
   };
 }
 
-module.exports = EAPI;
+module.exports = EXXXApi;

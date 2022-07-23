@@ -4,8 +4,8 @@
   "description": "a curiously advanced bot",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "debug": "nodemon index.js -e js",
+    "start": "node src/index.js",
+    "debug": "nodemon src/index.js -e js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "kruniak",

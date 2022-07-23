@@ -1,20 +1,13 @@
 
 const { Telegraf } = require('telegraf');
-const { PrismaClient } = require('@prisma/client');
 
-const EAPI = require('./eapi');
+const db = require('../data/db');
+const { registerAllCommands } = require('./commands');
 
-module.exports =
 class Bot {
-  constructor() {
+  constructor(api_key) {
     // bot client
-    this.bot = new Telegraf(process.env.TELEGRAM_KEY);
-
-    // db client
-    this.prisma = new PrismaClient();
-
-    // e926 client
-    this.eapi = new EAPI();
+    this.bot = new Telegraf(api_key);
 
     // initialize bot
     this.init();
@@ -27,11 +20,14 @@ class Bot {
 
     this.registerCoreEvents();
 
+    // register bot commands
+    registerAllCommands(this.bot);
+
     this.isInitialized = true;
   };
 
   registerCoreEvents = () => {
-    const { bot, prisma } = this;
+    const { bot } = this;
 
     bot.on('message', async (ctx, next) => {
       const senderId = ctx.message.from.id;
@@ -43,7 +39,8 @@ class Bot {
       // check existing and new users' basic data and update db
       //
 
-      const user = await prisma.user.findUnique({
+      
+      const user = await db.user.findUnique({
         where: {
           telegramId: senderId
         }
@@ -52,7 +49,7 @@ class Bot {
       if (user) {
         if (user.username !== username) {
           // update username
-          prisma.user.update({
+          db.user.update({
             data: {
               username
             }
@@ -61,7 +58,7 @@ class Bot {
 
         if (user.displayName !== displayName) {
           // update display name
-          prisma.user.update({
+          db.user.update({
             data: {
               displayName
             }
@@ -72,7 +69,7 @@ class Bot {
       }
 
       // create new user record
-      await prisma.user.create({
+      await db.user.create({
         data: {
           telegramId: senderId,
           username,
@@ -83,9 +80,15 @@ class Bot {
       return next();
     });
 
+    bot.on('new_chat_members', async(ctx, next) => {
+      ctx.replyWithVoice('https://github.com/drake-321/drake-321.github.io/raw/main/part1_entry-1.ogg');
+      return next();
+    });
   };
 
   run() {
     this.bot.launch();
   }
-};
+}
+
+module.exports = Bot;

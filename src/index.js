@@ -8,7 +8,7 @@ require('dotenv').config();
 // serve assets
 exec('npx http-server assets');
 
-const Kbot = require('./kbot');
+const Kbot = require('./kbot/bot');
 
-const bot = new Kbot();
+const bot = new Kbot(process.env.TELEGRAM_KEY);
 bot.run();
