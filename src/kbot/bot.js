@@ -29,10 +29,10 @@ class Bot {
     const { bot } = this;
 
     bot.on('message', async (ctx, next) => {
-      // ignore private messages
+      // ignore private messages by not calling next
+      //  (otherwise commands would be executed)
       if (ctx.chat.type === 'private') {
-        ctx.reply('hello?');
-        return next();
+        return ctx.reply('hello?');
       }
 
       const senderId = ctx.message.from.id;
