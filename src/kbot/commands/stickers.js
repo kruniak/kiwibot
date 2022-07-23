@@ -13,6 +13,8 @@ const stickerCommandHandler = async ctx => {
     where: { name: categoryName }
   });
 
+  // TODO: check if user has any favorite sets.
+  //  if so, try to find a sticker within that particular set
 
   const stickers = await db.sticker.findMany({
     where: {
@@ -29,6 +31,9 @@ const stickerCommandHandler = async ctx => {
   }
 
   const offset = Math.floor(Math.random() * stickers.length);
+
+  // TODO: check if user has sticker nsfw mode enabled and is trying to send
+  //  a sticker that is linked with nsfw categories
 
   const stickerFileId = stickers[offset].file_id;
 

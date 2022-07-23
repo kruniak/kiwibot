@@ -2,12 +2,14 @@ const HelpCommands = require('./commands/help');
 const InteractionCommands = require('./commands/interaction');
 const StatsCommands = require('./commands/stats');
 const BooruCommands = require('./commands/booru');
+const MiscCommands = require('./commands/misc');
 
 const commandsList = [
   ...HelpCommands,
   ...InteractionCommands,
   ...StatsCommands,
-  ...BooruCommands
+  ...BooruCommands,
+  ...MiscCommands
 ];
 
 const registerAllCommands = bot => {
