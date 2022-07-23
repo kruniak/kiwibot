@@ -9,7 +9,10 @@ axios.defaults.headers.get = {
 };
 
 class EXXXApi {
-  search = async tags => {
+  getRandomPostFromTags = async tags => {
+    // TODO: fix and improve the following
+    //  (handle inexistent tags, max api calls per secs, better api usage etc...)
+
     try {
       var res = await axios.get(`${BASEURL}/posts.json`, {
         headers: {
@@ -34,6 +37,14 @@ class EXXXApi {
     const imgUrl = res.data.posts[Math.floor(Math.random() * res.data.posts.length)].file.url;
     return imgUrl;
   };
+
+  // getArtistRandomPost = async artist => {
+
+  // };
+
+  // getTagInfo = async tagName => {
+
+  // }
 }
 
-module.exports = EXXXApi;
+module.exports = new EXXXApi();

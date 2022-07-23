@@ -1,23 +1,27 @@
+const HelpCommands = require('./commands/help');
 const InteractionCommands = require('./commands/interaction');
 const StatsCommands = require('./commands/stats');
 const BooruCommands = require('./commands/booru');
 
-// TODO: register sticker commands programmatically
-//  by reading category table for the name (command string)
-
-// then create an array of sticker command instances
-// [...Stickers].forEach
-
 const commandsList = [
+  ...HelpCommands,
   ...InteractionCommands,
-  ...StatsCommands
+  ...StatsCommands,
+  ...BooruCommands,
 ];
 
-// expects a Telegraf bot instance as paramater
 const registerAllCommands = bot => {
   commandsList.forEach(command => {
     bot.command(command.commandString, command.commandHandler);
   });
+
+  // register sticker commands asynchronously (i should find a better solution)
+  (async function(){
+    return await require('./commands/stickers');
+  })()
+    .then(stickerCommands => stickerCommands.forEach(stickerCommand => {
+      bot.command(stickerCommand.commandString, stickerCommand.commandHandler);
+    }));
 };
 
 module.exports = {

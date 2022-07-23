@@ -1,7 +1,6 @@
-
 const { Telegraf } = require('telegraf');
 
-const db = require('../data/db');
+const db = require('../db');
 const { registerAllCommands } = require('./commands');
 
 class Bot {
@@ -39,7 +38,6 @@ class Bot {
       // check existing and new users' basic data and update db
       //
 
-      
       const user = await db.user.findUnique({
         where: {
           telegramId: senderId

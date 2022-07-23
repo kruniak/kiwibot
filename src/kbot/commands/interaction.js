@@ -1,4 +1,5 @@
 const Command = require('../../core/command');
+const api = require('../../api/exxxApi');
 
 class Pet extends Command {
   constructor() {
@@ -100,7 +101,34 @@ class Pat extends Command {
   };
 }
 
+class Hug extends Command {
+  constructor() {
+    super('hug');
+  }
+
+  commandHandler = async ctx => {
+    const senderName = ctx.message.from.first_name;
+
+    if (ctx.message.text.split(' ').length === 2) {
+      var username = ctx.message.text.split(' ').slice(1).join(' ');
+    } else {
+      return ctx.reply('People want free hugs!\nMention someone to give them a huggie! ~', {
+        reply_to_message_id: ctx.message.message_id
+      });
+    }
+
+    const result = await api.getRandomPostFromTags('hugging affection');
+
+    const caption = `${senderName} hugs ${username}`;
+
+    return ctx.replyWithPhoto(result, {
+      caption
+    });
+  };
+}
+
 module.exports = [
   new Pet(),
-  new Pat()
+  new Pat(),
+  new Hug()
 ];
