@@ -1,3 +1,4 @@
+const db = require('../../db');
 const Command = require('../../core/command');
 
 class PetStats extends Command {
@@ -6,8 +7,6 @@ class PetStats extends Command {
   }
 
   commandHandler = async ctx => {
-    const { db } = this;
-
     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention) {
@@ -47,8 +46,6 @@ class PatStats extends Command {
   }
 
   commandHandler = async ctx => {
-    const { db } = this;
-
     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention) {

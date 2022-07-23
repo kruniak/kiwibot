@@ -1,5 +1,6 @@
-const Command = require('../../core/command');
+const db = require('../../db');
 const api = require('../../api/exxxApi');
+const Command = require('../../core/command');
 
 class Pet extends Command {
   constructor() {
@@ -7,8 +8,6 @@ class Pet extends Command {
   }
 
   commandHandler = async ctx => {
-    const { db } = this;
-
     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention) {
@@ -57,8 +56,6 @@ class Pat extends Command {
   }
 
   commandHandler = async ctx => {
-    const { db } = this;
-
     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention) {
@@ -112,17 +109,28 @@ class Hug extends Command {
     if (ctx.message.text.split(' ').length === 2) {
       var username = ctx.message.text.split(' ').slice(1).join(' ');
     } else {
-      return ctx.reply('People want free hugs!\nMention someone to give them a huggie! ~', {
-        reply_to_message_id: ctx.message.message_id
-      });
+      // return ctx.reply('People want free hugs!\nMention someone to give them a huggie! ~', {
+      //   reply_to_message_id: ctx.message.message_id
+      // });
+      return ctx.reply('Hug who?');
     }
 
     const result = await api.getRandomPostFromTags('hugging affection');
 
     // TODO: check if we have username in db: if so, print displayName instead
     // NOTE: i think username changes could lead to inconsistencies in edge-cases
+    const user = db.user.findUnique({
+      where: {
+        username
+      }
+    });
 
-    const caption = `${senderName} hugs ${username}`;
+    let maybeDisplayName = username;
+    if (user) {
+      maybeDisplayName = !user.displayName ? username : user.displayName;
+    }
+
+    const caption = `${senderName} hugs ${maybeDisplayName}`;
 
     return ctx.replyWithPhoto(result, {
       caption

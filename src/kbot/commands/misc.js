@@ -7,7 +7,7 @@ class Hello extends Command {
 
   commandHandler = async ctx => {
     const helloMessageNumbers = [1, 2, 3, 4, 7, 8];
-    return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${helloMessageNumbers[Math.floor(Math.random() * helloMessageNumbers.length) + 1]}.ogg`);
+    return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${helloMessageNumbers[Math.floor(Math.random() * helloMessageNumbers.length)]}.ogg`);
   };
 }
 
