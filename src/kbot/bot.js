@@ -32,7 +32,7 @@ class Bot {
       // ignore private messages
       if (ctx.chat.type === 'private') {
         ctx.reply('hello?');
-        next();
+        return next();
       }
 
       const senderId = ctx.message.from.id;
