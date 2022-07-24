@@ -36,7 +36,7 @@ class EXXXApi {
       .replace('incest', '')
       .trim();
 
-    tags += '-cub -age_difference -loli -incest';
+    tags += ' -cub -age_difference -loli -incest';
 
     try {
       var res = await axios.get(`${this.baseUrl}/posts.json`, {
