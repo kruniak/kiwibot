@@ -1,45 +1,45 @@
 # TODOS
 
 ## 0.2.0 roadmap
-- [] fix turret05
+- [ ] fix turret05
 
-- [] GLaDOS praise command (reply, mention, then voice reply or voice)
+- [ ] GLaDOS praise command (reply, mention, then voice reply or voice)
 
-- [] handle commands in all/most replies (example reply to command with /angry or /pet etc...)
+- [ ] handle commands in all/most replies (example reply to command with /angry or /pet etc...)
 
-- [] admin toggle nsfw posts
+- [ ] admin toggle nsfw posts
 
-- [] admin stickers management
+- [ ] admin stickers management
 
-- [] admin toggle nsfw sticker categories
+- [ ] admin toggle nsfw sticker categories
 
-- [] set booru posts to only find gay stuff
+- [ ] set booru posts to only find gay stuff
 
-- [] deploy / shutdown / changelog messages in chat
+- [ ] deploy / shutdown / changelog messages in chat
 
 
 ## 0.2.1 roadmap
 
-- [] pet / pat might use stickers instead of nothing or image, as well as hug
+- [ ] pet / pat might use stickers instead of nothing or image, as well as hug
 
-- [] booru posts should be globally settable as straight / bisexual / gay
+- [ ] booru posts should be globally settable as straight / bisexual / gay
 
-- [] save sticker set ids so that the bot will try to retrieve a matching sticker from the category and set that was selected by the user (/favestickers idx /listsets with indexes (stores stickerset ids) /unfavestickerset idx). if none was found it will just send some random one
+- [ ] save sticker set ids so that the bot will try to retrieve a matching sticker from the category and set that was selected by the user (/favestickers idx /listsets with indexes (stores stickerset ids) /unfavestickerset idx). if none was found it will just send some random one
 
-- [] maybe send "Loading..." reply message on commands that call apis, then delete it once the result is returned
+- [ ] maybe send "Loading..." reply message on commands that call apis, then delete it once the result is returned
 
 
 ## 0.2.2 roadmap
 
-- [] randpost 1 request every 30s per user
+- [ ] randpost 1 request every 30s per user
 
-- [] max two e926 requests per second as the docs state
+- [ ] max two e926 requests per second as the docs state
 
-- [] admin post tags blacklist add/remove commands
+- [ ] admin post tags blacklist add/remove commands
 
 
 # 0.3.0 roadmap
-- [] italian localization
+- [ ] italian localization
 
 
 ## backlog
