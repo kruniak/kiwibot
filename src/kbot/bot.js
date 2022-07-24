@@ -119,4 +119,4 @@ class Bot {
   }
 }
 
-module.exports = Bot;
+module.exports = new Bot(process.env.TELEGRAM_KEY);

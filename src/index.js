@@ -3,13 +3,11 @@
 //  https://stackoverflow.com/a/67692493/19446614
 
 // const { exec } = require('child_process');
-
 require('dotenv').config();
 
 // // serve assets
 // exec('npx http-server assets');
 
-const KBot = require('./kbot/bot');
+const bot = require('./kbot/bot');
 
-const bot = new KBot(process.env.TELEGRAM_KEY);
 bot.run();
