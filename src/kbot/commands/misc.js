@@ -5,7 +5,11 @@ class Hello extends Command {
     super('hello');
   }
 
-  commandHandler = async ctx => {
+  async commandHandler (ctx) {
+    if (!await super.commandHandler(ctx)) {
+      return;
+    }
+
     const helloMessageNumbers = [1, 2, 3, 4, 7, 8];
 
     const opt = ctx.message.reply_to_message ? {
@@ -13,7 +17,7 @@ class Hello extends Command {
     } : null;
 
     return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${helloMessageNumbers[Math.floor(Math.random() * helloMessageNumbers.length)]}.ogg`, opt);
-  };
+  }
 }
 
 module.exports = [

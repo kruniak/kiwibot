@@ -7,6 +7,10 @@ class PetStats extends Command {
   }
 
   commandHandler = async ctx => {
+    if (!await super.commandHandler(ctx)) {
+      return;
+    }
+
     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention) {
@@ -46,6 +50,10 @@ class PatStats extends Command {
   }
 
   commandHandler = async ctx => {
+    if (!await super.commandHandler(ctx)) {
+      return;
+    }
+
     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention) {

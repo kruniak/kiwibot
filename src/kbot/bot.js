@@ -50,10 +50,16 @@ class Bot {
         }
       });
 
+      const admins = await bot.telegram.getChatAdministrators(ctx.chat.id);
+      const isAdmin = Boolean(admins.find(member => member.user.id === senderId));
+
       if (user) {
         if (user.username !== username) {
           // update username
-          db.user.update({
+          await db.user.update({
+            where: {
+              id: user.id
+            },
             data: {
               username
             }
@@ -62,9 +68,24 @@ class Bot {
 
         if (user.displayName !== displayName) {
           // update display name
-          db.user.update({
+          await db.user.update({
+            where: {
+              id: user.id
+            },
             data: {
               displayName
+            }
+          });
+        }
+
+        if (user.admin !== isAdmin) {
+          // update admin status
+          await db.user.update({
+            where: {
+              id: user.id
+            },
+            data: {
+              admin: isAdmin
             }
           });
         }
@@ -77,7 +98,8 @@ class Bot {
         data: {
           telegramId: senderId,
           username,
-          displayName
+          displayName,
+          isAdmin
         }
       });
 

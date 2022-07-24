@@ -21,7 +21,7 @@ const registerAllCommands = bot => {
 
   // register sticker commands asynchronously (i should find a better solution)
   (async function(){
-    return await require('./commands/stickers');
+    return await require('./stickers');
   })()
     .then(stickerCommands => stickerCommands.forEach(stickerCommand => {
       bot.command(stickerCommand.commandString, stickerCommand.commandHandler);

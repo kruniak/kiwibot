@@ -5,7 +5,11 @@ class BotHelp extends Command {
     super('help');
   }
 
-  commandHandler = async ctx => {
+  async commandHandler (ctx) {
+    if (!await super.commandHandler(ctx)) {
+      return;
+    }
+
     if (ctx.message.text.split(' ').length != 2) {
       return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`);
     }
@@ -25,7 +29,7 @@ class BotHelp extends Command {
     return ctx.reply(message, {
       reply_to_message_id: ctx.message.message_id
     });
-  };
+  }
 }
 
 module.exports = [

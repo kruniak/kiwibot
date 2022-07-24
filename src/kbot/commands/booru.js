@@ -19,7 +19,11 @@ class RandomPostFromTags extends Command {
     super('randpost');
   }
 
-  commandHandler = async ctx => {
+  async commandHandler (ctx) {
+    if (!await super.commandHandler(ctx)) {
+      return;
+    }
+
     if (ctx.message.text.split(' ').length > 1) {
       var tags = ctx.message.text.split(' ').slice(1).join(' ').trim();
     }
@@ -36,7 +40,7 @@ class RandomPostFromTags extends Command {
     return ctx.replyWithPhoto(result, {
       allow_sending_without_reply: true
     });
-  };
+  }
 }
 
 // class GetRandomArtistPost extends Command {

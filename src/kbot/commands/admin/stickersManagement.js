@@ -8,9 +8,11 @@ class AddSticker extends Command {
     super('addsticker');
   }
 
-  commandHandler = async ctx => {
-    
-  };
+  async commandHandler (ctx) {
+    if (!await super.commandHandler(ctx)) {
+      return;
+    }
+  }
 }
 
 

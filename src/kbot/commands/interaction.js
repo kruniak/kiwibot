@@ -8,6 +8,10 @@ class Pet extends Command {
   }
 
   commandHandler = async ctx => {
+    if (!await super.commandHandler(ctx)) {
+      return;
+    }
+
     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention) {
@@ -57,6 +61,10 @@ class Pat extends Command {
   }
 
   commandHandler = async ctx => {
+    if (!await super.commandHandler(ctx)) {
+      return;
+    }
+
     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention) {
@@ -105,7 +113,11 @@ class Hug extends Command {
     super('hug');
   }
 
-  commandHandler = async ctx => {
+  async commandHandler (ctx) {
+    if (!await super.commandHandler(ctx)) {
+      return;
+    }
+
     const senderName = ctx.message.from.first_name;
 
     if (ctx.message.text.split(' ').length === 2) {
@@ -142,7 +154,7 @@ class Hug extends Command {
     };
 
     return ctx.replyWithPhoto(result, opt);
-  };
+  }
 }
 
 module.exports = [

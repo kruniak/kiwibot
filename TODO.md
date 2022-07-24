@@ -1,21 +1,22 @@
 # TODOS
 
 ## 0.2.0 roadmap
-- [ ] fix turret05
-
-- [ ] GLaDOS praise command (reply, mention, then voice reply or voice)
 
 - [x] handle commands in all/most replies (example reply to command with /angry or /pet etc...)
 
 - [x] admin toggle nsfw posts
 
+- [x] set booru posts to only find gay stuff for now
+
 - [ ] admin stickers management
 
 - [ ] admin toggle nsfw sticker categories
 
-- [x] set booru posts to only find gay stuff for now
+- [ ] fix turret05
 
-- [ ] deploy / shutdown / changelog messages in chat
+- [ ] GLaDOS praise command (reply, mention, then voice reply or voice)
+
+- [ ] maybe deploy / shutdown / changelog messages in chat
 
 
 ## 0.2.1 roadmap
@@ -45,6 +46,8 @@
 
 
 ## backlog
+- setup prettier
+
 - for commands like /hug (that return images from tags), u could check a post for tags to see if they match with the user 'profile' (for example, only pick those posts where the "huggee" is a canine anthro, or take things like size into consideration)
 
 - randpost syntax
