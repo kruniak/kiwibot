@@ -10,16 +10,14 @@
 
 - [ ] admin stickers management
 
-- [ ] admin toggle nsfw sticker categories
-
 - [ ] fix turret05
 
 - [ ] GLaDOS praise command (reply, mention, then voice reply or voice)
 
-- [ ] maybe deploy / shutdown / changelog messages in chat
-
 
 ## 0.2.1 roadmap
+
+- [ ] maybe admin/user toggle nsfw sticker categories
 
 - [ ] pet / pat might use stickers instead of nothing or image, as well as hug
 
@@ -46,11 +44,14 @@
 
 
 ## backlog
-- setup prettier
 
-- for commands like /hug (that return images from tags), u could check a post for tags to see if they match with the user 'profile' (for example, only pick those posts where the "huggee" is a canine anthro, or take things like size into consideration)
+- [ ] deploy / shutdown / changelog messages in chat
 
-- randpost syntax
+- [ ] setup prettier
+
+- [ ] for commands like /hug (that return images from tags), u could check a post for tags to see if they match with the user 'profile' (for example, only pick those posts where the "huggee" is a canine anthro, or take things like size into consideration)
+
+- [ ] actual randpost booru-like syntax
 /randpost [...]  (! before tag for blacklisting, logical operators, etc...)
 
-- turret or glados comment with text or voice sometimes whenever users are typing
+- [ ] turret or glados comment with text or voice sometimes whenever users are typing

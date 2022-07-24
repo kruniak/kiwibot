@@ -1,6 +1,6 @@
 {
   "name": "kiwibot",
-  "version": "0.1.1",
+  "version": "0.1.6",
   "description": "a curiously advanced bot",
   "main": "index.js",
   "scripts": {
