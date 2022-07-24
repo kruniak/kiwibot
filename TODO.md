@@ -42,6 +42,9 @@
 
 
 # 0.3.0 roadmap
+
+- [ ] improve EXXXApi.js
+
 - [ ] italian localization
 
 

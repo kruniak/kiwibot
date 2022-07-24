@@ -10,8 +10,8 @@ axios.defaults.headers.get = {
 //
 
 class EXXXApi {
-  constructor(nsfw) {
-    this.nsfw = nsfw;
+  constructor() {
+    this.nsfw = false;
     this.baseUrl = `https://e${this.nsfw ? '621' : '926'}.net/`;
   }
 
@@ -34,6 +34,7 @@ class EXXXApi {
       .replace('age_difference', '')
       .replace('loli', '')
       .replace('incest', '')
+      .replace(/\s+/g, ' ')
       .trim();
 
     tags += ' -cub -age_difference -loli -incest';
@@ -48,7 +49,7 @@ class EXXXApi {
         },
         params: {
           limit: 100,
-          tags
+          tags: tags
         }
       });
     } catch (ex) {
