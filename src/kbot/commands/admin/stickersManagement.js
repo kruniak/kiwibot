@@ -1,3 +1,19 @@
+const db = require('../../db');
+const Command = require('../../core/command');
+
+// TODO: add sticker / edit sticker / remove sticker
+
+class AddSticker extends Command {
+  constructor() {
+    super('addsticker');
+  }
+
+  commandHandler = async ctx => {
+    
+  };
+}
+
+
 // TODO: old code to redo
 
 // let chatId = null;
