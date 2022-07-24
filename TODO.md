@@ -14,12 +14,12 @@
 
 - [ ] GLaDOS praise command (reply, mention, then voice reply or voice)
 
+- [ ] nsfw posts tags global blacklist
+
 
 ## 0.2.1 roadmap
 
-- [ ] maybe admin/user toggle nsfw sticker categories
-
-- [ ] pet / pat might use stickers instead of nothing or image, as well as hug
+- [ ] pet / pat might use stickers instead of nothing or image, as well as hug, depending on idontknowwhatyet
 
 - [ ] booru posts should be globally or user settable as straight / bisexual / gay
 
@@ -28,6 +28,8 @@
 - [ ] improve EXXXApi.js
 
 - [ ] maybe send "Loading..." reply message on commands that call apis, then delete it once the result is returned
+
+- [ ] maybe admin/user toggle nsfw sticker categories
 
 
 ## 0.2.2 roadmap

@@ -99,7 +99,7 @@ class Bot {
           telegramId: senderId,
           username,
           displayName,
-          isAdmin
+          admin: isAdmin
         }
       });
 

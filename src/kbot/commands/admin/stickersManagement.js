@@ -155,33 +155,33 @@ class AddSticker extends Command {
   }
 }
 
-class EditSticker extends Command {
-  constructor() {
-    super('editsticker', true);
-  }
+// class EditSticker extends Command {
+//   constructor() {
+//     super('editsticker', true);
+//   }
 
-  async commandHandler (ctx) {
-    if (!await super.commandHandler(ctx)) {
-      return;
-    }
-  }
-}
+//   async commandHandler (ctx) {
+//     if (!await super.commandHandler(ctx)) {
+//       return;
+//     }
+//   }
+// }
 
-class DeleteSticker extends Command {
-  constructor() {
-    super('delsticker', true);
-  }
+// class DeleteSticker extends Command {
+//   constructor() {
+//     super('delsticker', true);
+//   }
 
-  async commandHandler (ctx) {
-    if (!await super.commandHandler(ctx)) {
-      return;
-    }
-  }
-}
+//   async commandHandler (ctx) {
+//     if (!await super.commandHandler(ctx)) {
+//       return;
+//     }
+//   }
+// }
 
 module.exports = [
   new AddSticker()
-]
+];
 
 
 // TODO: old code to redo
