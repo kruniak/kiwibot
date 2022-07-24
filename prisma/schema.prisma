@@ -12,7 +12,7 @@ model User {
   telegramId          Int                 @unique
   username            String?             @unique
   displayName         String?
-  admin               Boolean?            @default(false)
+  admin               Boolean? @default(false)
   patsReceived        Pat[]               @relation("patted")
   patsGiven           Pat[]               @relation("patter")
   petsReceived        Pet[]               @relation("petted")
