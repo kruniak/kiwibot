@@ -29,6 +29,15 @@ class EXXXApi {
 
     tags += ' male/male';
 
+    // provisionary nsfl blacklist
+    tags = tags.replace('cub', '')
+      .replace('age_difference', '')
+      .replace('loli', '')
+      .replace('incest', '')
+      .trim();
+
+    tags += '-cub -age_difference -loli -incest';
+
     try {
       var res = await axios.get(`${this.baseUrl}/posts.json`, {
         headers: {
