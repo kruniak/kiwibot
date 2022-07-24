@@ -11,7 +11,7 @@ class Pet extends Command {
     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention) {
-      return ctx.reply('pet who?');
+      return ctx.reply('Who would you like to pet?');
     }
 
     let pettedName;
@@ -43,10 +43,11 @@ class Pet extends Command {
       }
     });
 
-    // show either pat count or total pat count or none at random
-    // const petCount = db.get(`SELECT COUNT(*) FROM Pets WHERE PetterId = ${ctx.message.from.id}'`);
+    const opt = ctx.message.reply_to_message ? {
+      reply_to_message_id: ctx.message.reply_to_message.message_id
+    } : null;
 
-    return ctx.replyWithMarkdown(`_${petter.displayName} pets ${pettedName}._\n`);
+    return ctx.replyWithMarkdown(`${petter.displayName} _pets_ ${pettedName}.`, opt);
   };
 }
 
@@ -59,7 +60,7 @@ class Pat extends Command {
     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention) {
-      return ctx.reply('pat who?');
+      return ctx.reply('Who would you like to pat?');
     }
 
     let pattedName;
@@ -91,10 +92,11 @@ class Pat extends Command {
       }
     });
 
-    // show either pat count or total pat count or none at random
-    // const petCount = db.get(`SELECT COUNT(*) FROM Pets WHERE PetterId = ${ctx.message.from.id}'`);
+    const opt = ctx.message.reply_to_message ? {
+      reply_to_message_id: ctx.message.reply_to_message.message_id
+    } : null;
 
-    return ctx.replyWithMarkdown(`_${patter.displayName} pats ${pattedName}._\n`);
+    return ctx.replyWithMarkdown(`${patter.displayName} _pats_ ${pattedName}.`, opt);
   };
 }
 
@@ -109,16 +111,16 @@ class Hug extends Command {
     if (ctx.message.text.split(' ').length === 2) {
       var username = ctx.message.text.split(' ').slice(1).join(' ');
     } else {
-      // return ctx.reply('People want free hugs!\nMention someone to give them a huggie! ~', {
-      //   reply_to_message_id: ctx.message.message_id
-      // });
-      return ctx.reply('Hug who?');
+      return ctx.reply('Who would you like to hug?', {
+        reply_to_message_id: ctx.message.message_id
+      });
     }
 
     const result = await api.getRandomPostFromTags('hugging affection');
 
     // TODO: check if we have username in db: if so, print displayName instead
     // NOTE: i think username changes could lead to inconsistencies in edge-cases
+
     const user = db.user.findUnique({
       where: {
         username
@@ -132,9 +134,14 @@ class Hug extends Command {
 
     const caption = `${senderName} hugs ${maybeDisplayName}`;
 
-    return ctx.replyWithPhoto(result, {
+    const opt = ctx.message.reply_to_message ? {
+      caption,
+      reply_to_message_id: ctx.message.reply_to_message.message_id
+    } : {
       caption
-    });
+    };
+
+    return ctx.replyWithPhoto(result, opt);
   };
 }
 

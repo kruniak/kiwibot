@@ -37,13 +37,11 @@ const stickerCommandHandler = async ctx => {
 
   const stickerFileId = stickers[offset].file_id;
 
-  if (replyToMessage) {
-    return ctx.replyWithSticker(stickerFileId, {
-      reply_to_message_id: replyToMessage.message_id
-    });
-  }
+  const opt = replyToMessage ? {
+    reply_to_message_id: replyToMessage.message_id
+  } : null;
 
-  return ctx.replyWithSticker(stickerFileId);
+  return ctx.replyWithSticker(stickerFileId, opt);
 };
 
 module.exports = (async function() {

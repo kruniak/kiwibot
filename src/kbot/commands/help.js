@@ -22,7 +22,9 @@ class BotHelp extends Command {
       break;
     }
 
-    return ctx.reply(message);
+    return ctx.reply(message, {
+      reply_to_message_id: ctx.message.message_id
+    });
   };
 }
 

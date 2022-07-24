@@ -25,18 +25,18 @@ class PetStats extends Command {
     });
 
     if (!petter) {
-      return ctx.reply('I don\'t know them, or they haven\'t pet anyone yet. Either way, it\'s saddening.');
+      return ctx.reply('I don\'t know them, sorry.');
     }
 
-    let rand = Math.random() * 100;
-    const commentarySendRatePercentage = 8;
+    // let rand = Math.random() * 100;
+    // const commentarySendRatePercentage = 8;
     let shouldComment = false;
 
-    if (rand < commentarySendRatePercentage) {
-      shouldComment = true;
-    }
+    // if (rand < commentarySendRatePercentage) {
+    //   shouldComment = true;
+    // }
 
-    return ctx.replyWithMarkdown(`You appear to have pet them *${petter.petsGiven.length}* times.${shouldComment ? ' Impressive.\n\nConsider_b03aed0x2222llllï♣ô}23bba7_ng that _CRITICAL ERROR_: _Morality.PetOperationHumanPhraseGenerator.Get()_ not implemented. Exception type: EXCEPT\\_NULL\\_REF.\nShutting down threads...\n\nFollowing protocol.\n*Reboot imminent*...' : ''}`);
+    return ctx.replyWithMarkdown(`You have pet them *${petter.petsGiven.length}* times.${shouldComment ? ' Impressive.\n\nConsider_b03aed0x2222llllï♣ô}23bba7_ng that _CRITICAL ERROR_: _Morality.PetOperationHumanPhraseGenerator.Get()_ not implemented. Exception type: EXCEPT\\_NULL\\_REF.\nShutting down threads...\n\nFollowing protocol.\n*Reboot imminent*...' : ''}`);
   };
 }
 
@@ -64,10 +64,10 @@ class PatStats extends Command {
     });
 
     if (!patter) {
-      return ctx.reply('I don\'t know them, or they haven\'t pat anyone yet.');
+      return ctx.reply('I don\'t know them, sorry.');
     }
 
-    return ctx.replyWithMarkdown(`You appear to have pat them *${patter.patsGiven.length}* times.`);
+    return ctx.replyWithMarkdown(`You have pat them *${patter.patsGiven.length}* times.`);
   };
 }
 

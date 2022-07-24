@@ -5,7 +5,7 @@
 
 - [ ] GLaDOS praise command (reply, mention, then voice reply or voice)
 
-- [ ] handle commands in all/most replies (example reply to command with /angry or /pet etc...)
+- [x] handle commands in all/most replies (example reply to command with /angry or /pet etc...)
 
 - [ ] admin toggle nsfw posts
 
