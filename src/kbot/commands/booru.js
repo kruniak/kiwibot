@@ -31,6 +31,8 @@ class RandomPostFromTags extends Command {
       return ctx.reply(result);
     }
 
+    // TODO: add a goto post button
+
     return ctx.replyWithPhoto(result, {
       allow_sending_without_reply: true
     });

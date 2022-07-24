@@ -3,13 +3,15 @@ const InteractionCommands = require('./commands/interaction');
 const StatsCommands = require('./commands/stats');
 const BooruCommands = require('./commands/booru');
 const MiscCommands = require('./commands/misc');
+const NsfwManagementCommands = require('./commands/admin/nsfwManagement');
 
 const commandsList = [
   ...HelpCommands,
   ...InteractionCommands,
   ...StatsCommands,
   ...BooruCommands,
-  ...MiscCommands
+  ...MiscCommands,
+  ...NsfwManagementCommands
 ];
 
 const registerAllCommands = bot => {

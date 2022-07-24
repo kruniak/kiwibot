@@ -1,20 +1,36 @@
 const axios = require('axios');
 
-let SFW = true;
-const BASEURL = `https://e${SFW ? '926' : '621'}.net/`;
-
 axios.defaults.headers.get = {
   'api_key': process.env.EXXX_KEY,
   'User-Agent': 'SFW bot for a small group of friends and practice',
 };
 
+// !!!!!!!!
+// TODO: nsfw json blacklist
+//
+
 class EXXXApi {
+  constructor(nsfw) {
+    this.nsfw = nsfw;
+    this.baseUrl = `https://e${this.nsfw ? '621' : '926'}.net/`;
+  }
+
+  toggleNsfw = () => {
+    this.nsfw = !this.nsfw;
+    this.baseUrl = `https://e${this.nsfw ? '621' : '926'}.net/`;
+  };
+
   getRandomPostFromTags = async tags => {
     // TODO: fix and improve the following
     //  (handle inexistent tags, max api calls per secs, better api usage etc...)
 
+    // hardcode homo stuff for now.
+    // TODO: global/user settings eventually...
+
+    tags += ' male/male';
+
     try {
-      var res = await axios.get(`${BASEURL}/posts.json`, {
+      var res = await axios.get(`${this.baseUrl}/posts.json`, {
         headers: {
           // do not cache anything
           'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -22,7 +38,7 @@ class EXXXApi {
           'Expires': '0'
         },
         params: {
-          limit: 1000,
+          limit: 100,
           tags
         }
       });

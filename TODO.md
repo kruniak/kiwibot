@@ -7,13 +7,13 @@
 
 - [x] handle commands in all/most replies (example reply to command with /angry or /pet etc...)
 
-- [ ] admin toggle nsfw posts
+- [x] admin toggle nsfw posts
 
 - [ ] admin stickers management
 
 - [ ] admin toggle nsfw sticker categories
 
-- [ ] set booru posts to only find gay stuff
+- [x] set booru posts to only find gay stuff for now
 
 - [ ] deploy / shutdown / changelog messages in chat
 
@@ -22,9 +22,11 @@
 
 - [ ] pet / pat might use stickers instead of nothing or image, as well as hug
 
-- [ ] booru posts should be globally settable as straight / bisexual / gay
+- [ ] booru posts should be globally or user settable as straight / bisexual / gay
 
 - [ ] save sticker set ids so that the bot will try to retrieve a matching sticker from the category and set that was selected by the user (/favestickers idx /listsets with indexes (stores stickerset ids) /unfavestickerset idx). if none was found it will just send some random one
+
+- [ ] improve EXXXApi.js
 
 - [ ] maybe send "Loading..." reply message on commands that call apis, then delete it once the result is returned
 
