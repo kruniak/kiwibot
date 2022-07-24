@@ -1,11 +1,163 @@
-const db = require('../../db');
-const Command = require('../../core/command');
+const db = require('../../../db');
+const Command = require('../../../core/command');
 
 // TODO: add sticker / edit sticker / remove sticker
 
 class AddSticker extends Command {
   constructor() {
-    super('addsticker');
+    super('addsticker', true);
+
+    this.usersStickerPhase = [];
+    this.usersConfirmPhase = [];
+    this.usersEndPhase = [];
+
+    this.stickersByUser = [];
+    this.stickerTagsByUser = [];
+
+    this.commandHandler = this.commandHandler.bind(this);
+  }
+
+  async commandHandler (ctx) {
+    if (!await super.commandHandler(ctx)) {
+      return;
+    }
+
+    const senderId = ctx.message.from.id;
+
+    if (this.usersStickerPhase.includes(senderId)) {
+
+      if (!ctx.message.sticker) {
+        this.usersStickerPhase = this.usersStickerPhase.filter(userId => userId !== senderId);
+
+        return ctx.reply('I was expecting you to send a sticker. Nevermind.', {
+          reply_to_message_id: ctx.message.message_id
+        });
+      }
+
+      this.stickersByUser[senderId] = ctx.message.sticker;
+
+      this.usersConfirmPhase.push(senderId);
+
+      return ctx.reply('Now send a list of tags separated with a space. NSFW tags should be prefixed with a \'!\'', {
+        reply_to_message_id: ctx.message.message_id
+      });
+
+    } else if (this.usersConfirmPhase.includes(senderId)) {
+
+      // !!!!!!!!!!!!!!!!!!!!!!!
+      // TODO: nsfw tags
+
+      if (ctx.message.text.split(' ').length > 1) {
+        var tags = ctx.message.text.split(' ').slice(1).join(' ').trim();
+      } else {
+        this.usersConfirmPhase = this.usersStickerPhase.filter(userId => userId !== senderId);
+
+        this.stickersByUser[senderId] = null;
+
+        return ctx.reply('You haven\'t sent any tags. Aborting.', {
+          reply_to_message_id: ctx.message.message_id
+        });
+      }
+
+      this.usersStickerPhase = this.usersStickerPhase.filter(userId => userId !== senderId);
+
+      this.usersEndPhase.push(senderId);
+
+      this.stickerTagsByUser[senderId] = tags;
+
+      return ctx.reply(`Are you sure you want to apply the following tags to the sticker: ${this.stickerTagsByUser[senderId]} ?.\nyes/no`, {
+        reply_to_message_id: ctx.message.message_id
+      });
+
+    } else if (this.usersEndPhase.includes(senderId)) {
+      this.usersConfirmPhase = this.usersConfirmPhase.filter(userId => userId !== senderId);
+      this.usersEndPhase = this.usersEndPhase.filter(userId => userId !== senderId);
+
+      if (ctx.message.text.toLowerCase() !== 'yes') {
+        this.stickersByUser[senderId] = null;
+        this.stickerTagsByUser[senderId] = null;
+
+        return ctx.reply('Aborting.', {
+          reply_to_message_id: ctx.message.message_id
+        });
+      }
+
+      // create categories if they do not exist
+      let stickerCategories = [];
+      this.stickerTagsByUser[senderId].forEach(async tag => {
+
+        const category = db.stickerCategory.findUnique({
+          where: {
+            name: tag
+          }
+        });
+
+        if (!category) {
+          stickerCategories.push(
+            await db.stickerCategory.create({
+              data: {
+                name: tag,
+                nsfw: false // FIXME: this shouldn't be hardcoded
+              }
+            })
+          );
+        } else {
+          stickerCategories.push(category);
+        }
+      });
+
+      // create sticker set if it does not exist
+      let set = await db.stickerSet.findUnique({
+        where: {
+          setName: this.stickerTagsByUser[senderId].set_name
+        }
+      });
+
+      if (!set) {
+        set = await db.stickerSet.create({
+          data: {
+            setName: this.stickersByUser[senderId].set_name
+          }
+        });
+      }
+
+      await db.sticker.create({
+        data: {
+          file_id: this.stickersByUser[senderId].file_id,
+          categories: {
+            connectOrCreate: this.stickerTagsByUser[senderId].map(categoryName => ({
+              category: {
+                connectOrCreate: {
+                  where: {
+                    name: categoryName
+                  }
+                }
+              }
+            }))
+          },
+          stickerSetId: set.id
+        }
+      });
+
+      this.stickersByUser[senderId] = null;
+      this.stickerTagsByUser[senderId] = null;
+
+      return ctx.reply('Done.', {
+        reply_to_message_id: ctx.message.message_id
+      });
+    }
+
+    this.usersStickerPhase.push(senderId);
+
+    return ctx.reply('Send a sticker.', {
+      reply_to_message_id: ctx.message.message_id
+    });
+  }
+}
+
+class EditSticker extends Command {
+  constructor() {
+    super('editsticker', true);
   }
 
   async commandHandler (ctx) {
@@ -14,6 +166,22 @@ class AddSticker extends Command {
     }
   }
 }
+
+class DeleteSticker extends Command {
+  constructor() {
+    super('delsticker', true);
+  }
+
+  async commandHandler (ctx) {
+    if (!await super.commandHandler(ctx)) {
+      return;
+    }
+  }
+}
+
+module.exports = [
+  new AddSticker()
+]
 
 
 // TODO: old code to redo

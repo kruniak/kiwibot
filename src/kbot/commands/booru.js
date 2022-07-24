@@ -26,6 +26,11 @@ class RandomPostFromTags extends Command {
 
     if (ctx.message.text.split(' ').length > 1) {
       var tags = ctx.message.text.split(' ').slice(1).join(' ').trim();
+    } else {
+      // NOTE: maybe allow full random search. check what API does.
+      return ctx.reply('No tags specified.', {
+        reply_to_message_id: ctx.message.message_id
+      });
     }
 
     const result = await api.getRandomPostFromTags(tags);
