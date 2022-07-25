@@ -32,7 +32,7 @@ const registerAllCommands = async bot => {
   bot.command('/stickers', ctx => {
     return ctx.replyWithMarkdown(`*Sticker commands*\n\n${
       stickerCommands
-        .sort((a, b) => a.y.localeCompare(b.y))
+        .sort((a, b) => a.commandString.localeCompare(b.commandString))
         .map(cmd => `• ${cmd.commandString}`)
         .join('\n')
         .trim()
