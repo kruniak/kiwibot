@@ -52,6 +52,8 @@ class Pet extends Command {
     } : null;
 
     return ctx.replyWithMarkdown(`${petter.displayName} _pets_ ${pettedName}.`, opt);
+
+    // TODO: send stickers too!
   };
 }
 

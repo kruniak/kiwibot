@@ -8,8 +8,6 @@
 
 - [x] set booru posts to only find gay stuff for now
 
-- [ ] fix turret05
-
 - [x] stickers category command list
 
 - [x] *HALF-DONE* nsfw posts tags global blacklist
@@ -53,6 +51,8 @@
 
 
 ## backlog
+
+- [ ] fix turret05
 
 - [ ] deploy / shutdown / changelog messages in chat
 

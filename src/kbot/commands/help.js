@@ -12,7 +12,7 @@ class BotHelp extends Command {
     }
 
     if (ctx.message.text.split(' ').length != 2) {
-      ctx.reply(`${common.projectName} v${common.version}`);
+      ctx.reply(`${common.projectName} v${common.version}\n\n*Commands*\n• /stickers\n[...]`);
       return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`);
     }
 
