@@ -10,7 +10,7 @@
 
 - [ ] fix turret05
 
-- [ ] stickers category command list
+- [x] stickers category command list
 
 - [x] *HALF-DONE* nsfw posts tags global blacklist
 

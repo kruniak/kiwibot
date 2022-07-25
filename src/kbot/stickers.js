@@ -7,7 +7,13 @@ const stickerCommandHandler = async ctx => {
   const replyToMessage = ctx.message.reply_to_message;
 
   // get sticker category
-  const categoryName = ctx.message.text.slice(1);
+  let categoryName = ctx.message.text.slice(1);
+
+  const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
+
+  if (mention) {
+    categoryName = categoryName.substring(0, mention.offset);
+  }
 
   const category = await db.stickerCategory.findUnique({
     where: { name: categoryName }
