@@ -26,7 +26,7 @@ const registerAllCommands = bot => {
     .then(stickerCommands => {
       bot.command('/stickers', ctx => {
         // show stickers list
-        return ctx.replyWithMarkdown(`*Available sticker commands*\n\n${stickerCommands.map(cmd => `- ${cmd.commandString}`).join('\n').trim()}`);
+        return ctx.replyWithMarkdown(`*Sticker commands*:\n${stickerCommands.map(cmd => `• ${cmd.commandString}`).join('\n').trim()}`);
       });
 
       stickerCommands.forEach(stickerCommand => {

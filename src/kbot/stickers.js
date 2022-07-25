@@ -10,8 +10,8 @@ const stickerCommandHandler = async ctx => {
   let categoryName = ctx.message.text.slice(1);
 
   // remove bot mention
-  if (categoryName.indexOf('@')) {
-    categoryName = categoryName.substring(0, categoryName.indexOf('@'));
+  if (categoryName.indexOf(' ')) {
+    categoryName = categoryName.substring(0, categoryName.indexOf(' '));
   }
 
   const category = await db.stickerCategory.findUnique({
