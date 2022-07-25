@@ -30,7 +30,7 @@ const registerAllCommands = async bot => {
 
   // show stickers list
   bot.command('/stickers', ctx => {
-    return ctx.replyWithMarkdown(`*Sticker commands*:\n${stickerCommands.sort.map(cmd => `• ${cmd.commandString}`).join('\n').trim()}`);
+    return ctx.replyWithMarkdown(`*Sticker commands*:\n${stickerCommands.sort().map(cmd => `• ${cmd.commandString}`).join('\n').trim()}`);
   });
 };
 
