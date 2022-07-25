@@ -19,13 +19,22 @@ const registerAllCommands = bot => {
     bot.command(command.commandString, command.commandHandler);
   });
 
+  //
   // register sticker commands asynchronously (i should find a better solution)
+  //
   (async function(){
     return await require('./stickers');
   })()
-    .then(stickerCommands => stickerCommands.forEach(stickerCommand => {
-      bot.command(stickerCommand.commandString, stickerCommand.commandHandler);
-    }));
+    .then(stickerCommands => {
+      bot.command('/stickers', ctx => {
+        // show stickers list
+        return ctx.reply(`Available sticker commands:\n\n${stickerCommands.map(cmd => `- ${cmd}`).join('\n').trim()}`);
+      });
+
+      stickerCommands.forEach(stickerCommand => {
+        bot.command(stickerCommand.commandString, stickerCommand.commandHandler);
+      });
+    });
 };
 
 module.exports = {

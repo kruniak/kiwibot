@@ -8,11 +8,9 @@
 
 - [x] set booru posts to only find gay stuff for now
 
-- [ ] admin stickers management
-
 - [ ] fix turret05
 
-- [ ] GLaDOS praise command (reply, mention, then voice reply or voice)
+- [ ] stickers category command list
 
 - [x] *HALF-DONE* nsfw posts tags global blacklist
 
@@ -38,6 +36,8 @@
 
 - [ ] admin post tags blacklist add/remove commands
 
+- [ ] GLaDOS praise command (reply, mention, then voice reply or voice)
+
 ## 0.2.3 roadmap
 
 - [ ] actual /help command
@@ -48,6 +48,8 @@
 - [ ] improve EXXXApi.js, add booru commands and extend functionality
 
 - [ ] italian localization
+
+- [ ] admin stickers management
 
 
 ## backlog
