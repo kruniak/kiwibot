@@ -12,7 +12,7 @@ class BotHelp extends Command {
     }
 
     if (ctx.message.text.split(' ').length != 2) {
-      return ctx.replyWithMarkdown(`*${common.projectName} v${common.version}*\n• /about\n• /privacy\n\n*Commands*\n• /stickers\n• /pet\n• /pat\n• /hug\n• /kiss\n• *[...]*`, {
+      return ctx.reply(`*${common.projectName} v${common.version}*\n• /about\n• /privacy\n\n*Commands*\n• /stickers\n• /pet\n• /pat\n• /hug\n• /kiss\n• *[...]*`, {
         reply_to_message_id: ctx.message.message_id
       });
     }
