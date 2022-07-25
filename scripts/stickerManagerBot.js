@@ -33,10 +33,10 @@ class Bot {
       });
 
       if (!user) {
-        ctx.reply('I don\'t know you. I don\'t speak with strangers.');
+        ctx.reply("I don't know you. I don't speak with strangers.");
         return next();
       } else if (!user.admin) {
-        ctx.reply('You don\'t have the rights to speak with me.');
+        ctx.reply("You don't have the rights to speak with me.");
         return next();
       }
 
@@ -51,7 +51,7 @@ class Bot {
         phase1 = false;
 
         sticker = ctx.message.sticker;
-        
+
         ctx.reply('Send a list of tags separated by spaces.');
         return next();
       } else if (phase2) {
@@ -68,7 +68,7 @@ class Bot {
 
         // check if categories exist
         let stickerCategoryIds = [];
-        for(const tag of tags) {
+        for (const tag of tags) {
           const category = await db.stickerCategory.findUnique({
             where: {
               name: tag
@@ -77,12 +77,14 @@ class Bot {
 
           if (!category) {
             stickerCategoryIds.push(
-              (await db.stickerCategory.create({
-                data: {
-                  name: tag,
-                  nsfw: false // FIXME: this shouldn't be hardcoded
-                }
-              })).id
+              (
+                await db.stickerCategory.create({
+                  data: {
+                    name: tag,
+                    nsfw: false // FIXME: this shouldn't be hardcoded
+                  }
+                })
+              ).id
             );
           } else {
             stickerCategoryIds.push(category.id);
@@ -133,7 +135,6 @@ class Bot {
 
     this.isInitialized = true;
   };
-
 
   run() {
     this.bot.launch();

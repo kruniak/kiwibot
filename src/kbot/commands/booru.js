@@ -5,12 +5,11 @@ const Command = require('../../core/command');
 //
 const api = require('../../api/exxxApi');
 
-const isValidUrl = urlString=> {
-  try { 
-    return Boolean(new URL(urlString)); 
-  }
-  catch(e){ 
-    return false; 
+const isValidUrl = urlString => {
+  try {
+    return Boolean(new URL(urlString));
+  } catch (e) {
+    return false;
   }
 };
 
@@ -19,8 +18,8 @@ class RandomPostFromTags extends Command {
     super('randpost');
   }
 
-  async commandHandler (ctx) {
-    if (!await super.commandHandler(ctx)) {
+  async commandHandler(ctx) {
+    if (!(await super.commandHandler(ctx))) {
       return;
     }
 
@@ -65,6 +64,4 @@ class RandomPostFromTags extends Command {
 //   };
 // }
 
-module.exports = [
-  new RandomPostFromTags()
-];
+module.exports = [new RandomPostFromTags()];

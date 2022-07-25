@@ -35,16 +35,26 @@ class Bot {
         if (Math.random() < 0.5 ? 0 : 1) {
           return ctx.reply('hello?');
         } else {
-          return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`, {
-            reply_to_message_id: ctx.message.message_id
-          });
+          return ctx.replyWithVoice(
+            `https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${
+              Math.floor(Math.random() * 9) + 1
+            }.ogg`,
+            {
+              reply_to_message_id: ctx.message.message_id
+            }
+          );
         }
       }
 
       const senderId = ctx.message.from.id;
 
       const username = ctx.message.from.username;
-      const displayName = [ctx.message.from.first_name, ctx.message.from.last_name].join(' ').trim();
+      const displayName = [
+        ctx.message.from.first_name,
+        ctx.message.from.last_name
+      ]
+        .join(' ')
+        .trim();
 
       //
       // check existing and new users' basic data and update db
@@ -57,7 +67,9 @@ class Bot {
       });
 
       const admins = await bot.telegram.getChatAdministrators(ctx.chat.id);
-      const isAdmin = Boolean(admins.find(member => member.user.id === senderId));
+      const isAdmin = Boolean(
+        admins.find(member => member.user.id === senderId)
+      );
 
       if (user) {
         if (user.username !== username) {
@@ -112,10 +124,12 @@ class Bot {
       return next();
     });
 
-    bot.on('new_chat_members', async(ctx, next) => {
+    bot.on('new_chat_members', async (ctx, next) => {
       // TODO: check if not self. it will welcome itself when invited to a group
 
-      ctx.replyWithVoice('https://github.com/drake-321/drake-321.github.io/raw/main/part1_entry-1.ogg');
+      ctx.replyWithVoice(
+        'https://github.com/drake-321/drake-321.github.io/raw/main/part1_entry-1.ogg'
+      );
       return next();
     });
   };

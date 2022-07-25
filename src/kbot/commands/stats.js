@@ -7,7 +7,7 @@ class PetStats extends Command {
   }
 
   commandHandler = async ctx => {
-    if (!await super.commandHandler(ctx)) {
+    if (!(await super.commandHandler(ctx))) {
       return;
     }
 
@@ -17,7 +17,10 @@ class PetStats extends Command {
       return ctx.reply('who?');
     }
 
-    const petterUsername = ctx.message.text.substring(mention.offset + 1, mention.offset + mention.length + 1);
+    const petterUsername = ctx.message.text.substring(
+      mention.offset + 1,
+      mention.offset + mention.length + 1
+    );
 
     const petter = await db.user.findUnique({
       where: {
@@ -29,7 +32,7 @@ class PetStats extends Command {
     });
 
     if (!petter) {
-      return ctx.reply('I don\'t know them, sorry.');
+      return ctx.reply("I don't know them, sorry.");
     }
 
     // let rand = Math.random() * 100;
@@ -40,7 +43,13 @@ class PetStats extends Command {
     //   shouldComment = true;
     // }
 
-    return ctx.replyWithMarkdown(`You have pet them *${petter.petsGiven.length}* times.${shouldComment ? ' Impressive.\n\nConsider_b03aed0x2222llllï♣ô}23bba7_ng that _CRITICAL ERROR_: _Morality.PetOperationHumanPhraseGenerator.Get()_ not implemented. Exception type: EXCEPT\\_NULL\\_REF.\nShutting down threads...\n\nFollowing protocol.\n*Reboot imminent*...' : ''}`);
+    return ctx.replyWithMarkdown(
+      `You have pet them *${petter.petsGiven.length}* times.${
+        shouldComment
+          ? ' Impressive.\n\nConsider_b03aed0x2222llllï♣ô}23bba7_ng that _CRITICAL ERROR_: _Morality.PetOperationHumanPhraseGenerator.Get()_ not implemented. Exception type: EXCEPT\\_NULL\\_REF.\nShutting down threads...\n\nFollowing protocol.\n*Reboot imminent*...'
+          : ''
+      }`
+    );
   };
 }
 
@@ -50,7 +59,7 @@ class PatStats extends Command {
   }
 
   commandHandler = async ctx => {
-    if (!await super.commandHandler(ctx)) {
+    if (!(await super.commandHandler(ctx))) {
       return;
     }
 
@@ -60,7 +69,10 @@ class PatStats extends Command {
       return ctx.reply('who?');
     }
 
-    const patterUsername = ctx.message.text.substring(mention.offset + 1, mention.offset + mention.length + 1);
+    const patterUsername = ctx.message.text.substring(
+      mention.offset + 1,
+      mention.offset + mention.length + 1
+    );
 
     const patter = await db.user.findUnique({
       where: {
@@ -72,14 +84,13 @@ class PatStats extends Command {
     });
 
     if (!patter) {
-      return ctx.reply('I don\'t know them, sorry.');
+      return ctx.reply("I don't know them, sorry.");
     }
 
-    return ctx.replyWithMarkdown(`You have pat them *${patter.patsGiven.length}* times.`);
+    return ctx.replyWithMarkdown(
+      `You have pat them *${patter.patsGiven.length}* times.`
+    );
   };
 }
 
-module.exports = [
-  new PetStats(),
-  new PatStats()
-];
+module.exports = [new PetStats(), new PatStats()];

@@ -48,14 +48,16 @@ const stickerCommandHandler = async ctx => {
 
   const stickerFileId = stickers[offset].file_id;
 
-  const opt = replyToMessage ? {
-    reply_to_message_id: replyToMessage.message_id
-  } : null;
+  const opt = replyToMessage
+    ? {
+        reply_to_message_id: replyToMessage.message_id
+      }
+    : null;
 
   return ctx.replyWithSticker(stickerFileId, opt);
 };
 
-module.exports = (async function() {
+module.exports = (async function () {
   const categories = await db.stickerCategory.findMany({
     select: {
       name: true

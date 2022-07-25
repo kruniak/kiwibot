@@ -20,7 +20,7 @@ const registerAllCommands = async bot => {
   });
 
   // register sticker commands
-  const stickerCommands = await (async function(){
+  const stickerCommands = await (async function () {
     return await require('./stickers');
   })();
 
@@ -30,13 +30,13 @@ const registerAllCommands = async bot => {
 
   // show stickers list
   bot.command('/stickers', ctx => {
-    return ctx.reply(`Sticker commands\n${
-      stickerCommands
+    return ctx.reply(
+      `Sticker commands\n${stickerCommands
         .sort((a, b) => a.commandString.localeCompare(b.commandString))
         .map(cmd => `• ${cmd.commandString}`)
         .join('\n')
-        .trim()
-    }`);
+        .trim()}`
+    );
   });
 };
 

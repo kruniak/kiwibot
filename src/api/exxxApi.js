@@ -1,8 +1,8 @@
 const axios = require('axios');
 
 axios.defaults.headers.get = {
-  'api_key': process.env.EXXX_KEY,
-  'User-Agent': 'SFW bot for a small group of friends and practice',
+  api_key: process.env.EXXX_KEY,
+  'User-Agent': 'SFW bot for a small group of friends and practice'
 };
 
 // !!!!!!!!
@@ -30,7 +30,8 @@ class EXXXApi {
     tags += ' male/male';
 
     // provisionary nsfl blacklist
-    tags = tags.replace('cub', '')
+    tags = tags
+      .replace('cub', '')
       .replace('age_difference', '')
       .replace('loli', '')
       .replace('incest', '')
@@ -44,8 +45,8 @@ class EXXXApi {
         headers: {
           // do not cache anything
           'Cache-Control': 'no-cache, no-store, must-revalidate',
-          'Pragma': 'no-cache',
-          'Expires': '0'
+          Pragma: 'no-cache',
+          Expires: '0'
         },
         params: {
           limit: 100,
@@ -60,7 +61,9 @@ class EXXXApi {
       return 'Nothing found 😿';
     }
 
-    const imgUrl = res.data.posts[Math.floor(Math.random() * res.data.posts.length)].file.url;
+    const imgUrl =
+      res.data.posts[Math.floor(Math.random() * res.data.posts.length)].file
+        .url;
     return imgUrl;
   };
 

@@ -7,16 +7,16 @@ class ToggleNsfwPosts extends Command {
   }
 
   async commandHandler(ctx) {
-    if (!await super.commandHandler(ctx)) {
+    if (!(await super.commandHandler(ctx))) {
       return;
     }
 
     api.toggleNsfw();
 
-    return ctx.replyWithMarkdown(`NSFW posts are now *${api.nsfw ? 'enabled' : 'disabled'}*.`);
+    return ctx.replyWithMarkdown(
+      `NSFW posts are now *${api.nsfw ? 'enabled' : 'disabled'}*.`
+    );
   }
 }
 
-module.exports = [
-  new ToggleNsfwPosts()
-];
+module.exports = [new ToggleNsfwPosts()];

@@ -13,7 +13,7 @@ class Command {
   //
   // returns a boolean that indicates whether the command should be executed or not
   //
-  async commandHandler (ctx) {
+  async commandHandler(ctx) {
     const user = await db.user.findUnique({
       where: {
         telegramId: ctx.message.from.id
@@ -22,9 +22,12 @@ class Command {
 
     if (this.admin) {
       if (!user.admin) {
-        ctx.replyWithMarkdown('You don\'t have the rights to use this command.', {
-          reply_to_message_id: ctx.message.message_id
-        });
+        ctx.replyWithMarkdown(
+          "You don't have the rights to use this command.",
+          {
+            reply_to_message_id: ctx.message.message_id
+          }
+        );
 
         return false;
       }
