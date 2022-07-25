@@ -9,10 +9,9 @@ const stickerCommandHandler = async ctx => {
   // get sticker category
   let categoryName = ctx.message.text.slice(1);
 
-  const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
-
-  if (mention) {
-    categoryName = categoryName.substring(0, mention.offset);
+  // remove bot mention
+  if (categoryName.indexOf('@')) {
+    categoryName = categoryName.substring(0, categoryName.indexOf('@'));
   }
 
   const category = await db.stickerCategory.findUnique({
@@ -38,7 +37,7 @@ const stickerCommandHandler = async ctx => {
 
   const offset = Math.floor(Math.random() * stickers.length);
 
-  // TODO: check if user has sticker nsfw mode enabled and is trying to send
+  // TODO: check if user has sticker nsfw mode enabled or global nsfw mode when they are trying to send
   //  a sticker that is linked with nsfw categories
 
   const stickerFileId = stickers[offset].file_id;

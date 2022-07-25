@@ -19,9 +19,7 @@ const registerAllCommands = bot => {
     bot.command(command.commandString, command.commandHandler);
   });
 
-  //
   // register sticker commands asynchronously (FIXME: do it synchronously instead?)
-  //
   (async function(){
     return await require('./stickers');
   })()
