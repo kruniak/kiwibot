@@ -1,8 +1,8 @@
 const Command = require('../../core/command');
 
-class Hello extends Command {
+class PHello extends Command {
   constructor() {
-    super('hello');
+    super('p_hello');
   }
 
   async commandHandler (ctx) {
@@ -21,5 +21,5 @@ class Hello extends Command {
 }
 
 module.exports = [
-  new Hello()
+  new PHello()
 ];

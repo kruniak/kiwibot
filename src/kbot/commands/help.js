@@ -12,7 +12,7 @@ class BotHelp extends Command {
     }
 
     if (ctx.message.text.split(' ').length != 2) {
-      ctx.replyWithMarkdown(`*${common.projectName} v${common.version}*\n• /about\n• /privacy\n\n*Commands*\n• /stickers\n• /pet\n• /pat\n• /hug\n• /kiss\n• *[...]*`, {
+      return ctx.replyWithMarkdown(`*${common.projectName} v${common.version}*\n• /about\n• /privacy\n\n*Commands*\n• /stickers\n• /pet\n• /pat\n• /hug\n• /kiss\n• *[...]*`, {
         reply_to_message_id: ctx.message.message_id
       });
     }
@@ -25,10 +25,8 @@ class BotHelp extends Command {
       message = `usage: ${command} [tags]`;
       break;
     default:
-      //message = `command /${command} does not exist`;
-      return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`, {
-        reply_to_message_id: ctx.message.message_id
-      });
+      message = `command /${command} does not exist`;
+      break;
     }
 
     return ctx.reply(message, {

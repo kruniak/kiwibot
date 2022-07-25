@@ -32,7 +32,13 @@ class Bot {
       // ignore private messages by not calling next
       //  (otherwise commands would be executed)
       if (ctx.chat.type === 'private') {
-        return ctx.reply('hello?');
+        if (Math.random() < 0.5 ? 0 : 1) {
+          return ctx.reply('hello?');
+        } else {
+          return ctx.replyWithVoice(`https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1}.ogg`, {
+            reply_to_message_id: ctx.message.message_id
+          });
+        }
       }
 
       const senderId = ctx.message.from.id;

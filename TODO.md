@@ -15,6 +15,8 @@
 
 ## 0.2.1 roadmap
 
+- [ ] send booru posts with post url message after pic (without preview)
+
 - [ ] pet / pat might use stickers instead of nothing or image, as well as hug, depending on idontknowwhatyet
 
 - [ ] booru posts should be globally or user settable as straight / bisexual / gay
