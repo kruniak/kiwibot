@@ -5,13 +5,13 @@
 // const { exec } = require('child_process');
 require('dotenv').config();
 
-// TEMPORARY: sticker management
-const bot = require('../scripts/stickerManagerBot');
-bot.run();
+// // TEMPORARY: sticker management
+// const bot = require('../scripts/stickerManagerBot');
+// bot.run();
 
 // // serve assets
 // exec('npx http-server assets');
 
-// const bot = require('./kbot/bot');
+const bot = require('./kbot/bot');
 
-// bot.run();
+bot.run();
