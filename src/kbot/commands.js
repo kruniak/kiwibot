@@ -30,9 +30,9 @@ const registerAllCommands = async bot => {
 
   // show stickers list
   bot.command('/stickers', ctx => {
-    return ctx.replyWithMarkdown(`*Sticker commands*:\n${
+    return ctx.replyWithMarkdown(`*Sticker commands*\n\n${
       stickerCommands
-        .sort((a, b) => a.commandString < b.commandString)
+        .sort((a, b) => a.y.localeCompare(b.y))
         .map(cmd => `• ${cmd.commandString}`)
         .join('\n')
         .trim()

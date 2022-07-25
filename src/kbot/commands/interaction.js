@@ -159,6 +159,8 @@ class Hug extends Command {
   }
 }
 
+// TODO: class Kiss extends Command { ... }
+
 module.exports = [
   new Pet(),
   new Pat(),
