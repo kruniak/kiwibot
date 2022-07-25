@@ -9,9 +9,15 @@ const stickerCommandHandler = async ctx => {
   // get sticker category
   let categoryName = ctx.message.text.slice(1);
 
+  // ignore command if it's followed by any words
+  // FIXME: improve
+  if (categoryName.indexOf(' ') > -1) {
+    return;
+  }
+
   // remove bot mention
-  if (categoryName.indexOf(' ')) {
-    categoryName = categoryName.substring(0, categoryName.indexOf(' '));
+  if (categoryName.indexOf('@') > -1) {
+    categoryName = categoryName.substring(0, categoryName.indexOf('@'));
   }
 
   const category = await db.stickerCategory.findUnique({
