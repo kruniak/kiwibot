@@ -7,6 +7,7 @@ class BotHelp extends Command {
   }
 
   async commandHandler(ctx) {
+
     if (!(await super.commandHandler(ctx))) {
       return;
     }

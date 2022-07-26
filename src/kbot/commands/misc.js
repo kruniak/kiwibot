@@ -29,4 +29,27 @@ class PHello extends Command {
   }
 }
 
-module.exports = [new PHello()];
+// class Roll extends Command {
+//   constructor() {
+//     super('roll');
+//   }
+
+//   async commandHandler(ctx) {
+//     if (!(await super.commandHandler(ctx))) {
+//       return;
+//     }
+
+//     const senderId = ctx.message.from.id;
+
+//     const rollString = ctx.message.text.split(' ')[1];
+//     const dieSides = parseInt(rollString.substring(1, rollString.length - 1));
+
+//     const result = Math.floor(Math.random() * dieSides);
+
+//     return ctx.reply(result, {
+//       reply_to_message_id: senderId
+//     });
+//   }
+// }
+
+module.exports = [new PHello(), /* new Roll() */ ];
