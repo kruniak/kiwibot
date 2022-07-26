@@ -63,7 +63,7 @@ class EXXXApi {
     const post = posts[Math.floor(Math.random() * posts.length)];
 
     // FIXME: doesnt work properly
-    if (posts.length === 0) {
+    if (!posts || posts.length === 0) {
       return 'Nothing found 😿';
     }
 
