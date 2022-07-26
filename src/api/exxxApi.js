@@ -40,8 +40,9 @@ class EXXXApi {
 
     tags += ' -cub -age_difference -loli -incest';
 
+    let posts = [];
     try {
-      var res = await axios.get(`${this.baseUrl}/posts.json`, {
+      const res = await axios.get(`${this.baseUrl}/posts.json`, {
         headers: {
           // do not cache anything
           'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -53,15 +54,18 @@ class EXXXApi {
           tags: tags
         }
       });
+
+      posts = res.data;
     } catch (ex) {
       return 'Bot failure or service down.';
     }
 
-    if (res.data.posts.length === 0) {
+    // FIXME: doesnt work properly
+    if (posts.length === 0) {
       return 'Nothing found 😿';
     }
 
-    const post = res.data.posts[Math.floor(Math.random() * res.data.posts.length)];
+    const post = posts[Math.floor(Math.random() * posts.length)];
 
     // TODO: check if animation?
       
