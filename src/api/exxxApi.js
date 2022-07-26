@@ -60,12 +60,12 @@ class EXXXApi {
       return 'Bot failure or service down.';
     }
 
+    const post = posts[Math.floor(Math.random() * posts.length)];
+
     // FIXME: doesnt work properly
     if (posts.length === 0) {
       return 'Nothing found 😿';
     }
-
-    const post = posts[Math.floor(Math.random() * posts.length)];
 
     // TODO: check if animation?
       
