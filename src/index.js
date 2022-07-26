@@ -4,6 +4,7 @@
 
 // const { exec } = require('child_process');
 require('dotenv').config();
+const common = require('./core/common');
 
 // // TEMPORARY: sticker management
 // const bot = require('../scripts/stickerManagerBot');
@@ -13,5 +14,7 @@ require('dotenv').config();
 // exec('npx http-server assets');
 
 const bot = require('./kbot/bot');
+
+console.log(`${common.projectName} v${common.version} running on nodejs ${process.version}`);
 
 bot.run();
