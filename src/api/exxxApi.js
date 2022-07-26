@@ -12,12 +12,12 @@ axios.defaults.headers.get = {
 class EXXXApi {
   constructor() {
     this.nsfw = false;
-    this.baseUrl = `https://e${this.nsfw ? '621' : '926'}.net/`;
+    this.baseUrl = `https://e${this.nsfw ? '621' : '926'}.net`;
   }
 
   toggleNsfw = () => {
     this.nsfw = !this.nsfw;
-    this.baseUrl = `https://e${this.nsfw ? '621' : '926'}.net/`;
+    this.baseUrl = `https://e${this.nsfw ? '621' : '926'}.net`;
   };
 
   getRandomPostFromTags = async tags => {
@@ -61,10 +61,17 @@ class EXXXApi {
       return 'Nothing found 😿';
     }
 
-    const imgUrl =
-      res.data.posts[Math.floor(Math.random() * res.data.posts.length)].file
-        .url;
-    return imgUrl;
+    const post = res.data.posts[Math.floor(Math.random() * res.data.posts.length)];
+
+    // TODO: check if animation?
+      
+    const imgUrl = post.file.url;
+    const postId = post.id;
+
+    return {
+      imgUrl: imgUrl,
+      postUrl: this.baseUrl + '/posts/' + postId
+    };
   };
 
   // getArtistRandomPost = async artist => {

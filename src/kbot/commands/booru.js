@@ -35,14 +35,17 @@ class RandomPostFromTags extends Command {
     const result = await api.getRandomPostFromTags(tags);
 
     // FIXME: find a better solution
-    if (!isValidUrl(result)) {
-      return ctx.reply(result);
+    if (!isValidUrl(result.imgUrl) || !isValidUrl(result.postUrl)) {
+      return ctx.reply('Something weird just happened.');
     }
 
     // TODO: add a goto post button
 
-    return ctx.replyWithPhoto(result, {
-      allow_sending_without_reply: true
+    return ctx.replyWithPhoto(result.imgUrl, {
+      allow_sending_without_reply: true,
+      reply_to_message_id: ctx.message.message_id,
+      caption: `Post [*link*](${result.postUrl})`,
+      parse_mode: 'MarkdownV2'
     });
   }
 }
