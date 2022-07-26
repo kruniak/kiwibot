@@ -7,12 +7,12 @@ class Pet extends Command {
     super('pet');
   }
 
-  commandHandler = async (ctx) => {
+  commandHandler = async ctx => {
     if (!(await super.commandHandler(ctx))) {
       return;
     }
 
-    const mention = ctx.message.entities.filter((e) => e.type === 'mention')[0];
+    const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention) {
       return ctx.reply('Who would you like to pet?');
@@ -27,33 +27,33 @@ class Pet extends Command {
 
     const petted = await db.user.findUnique({
       where: {
-        username: pettedUsername,
-      },
+        username: pettedUsername
+      }
     });
 
     if (petted) {
       pettedName = petted.displayName;
     } else {
-      return ctx.reply("I don't know them.");
+      return ctx.reply('I don\'t know them.');
     }
 
     const petter = await db.user.findUnique({
       where: {
-        telegramId: ctx.message.from.id,
-      },
+        telegramId: ctx.message.from.id
+      }
     });
 
     await db.pet.create({
       data: {
         petterId: petter.id,
-        pettedId: petted.id,
-      },
+        pettedId: petted.id
+      }
     });
 
     const opt = ctx.message.reply_to_message
       ? {
-          reply_to_message_id: ctx.message.reply_to_message.message_id,
-        }
+        reply_to_message_id: ctx.message.reply_to_message.message_id
+      }
       : null;
 
     return ctx.replyWithMarkdown(
@@ -70,12 +70,12 @@ class Pat extends Command {
     super('pat');
   }
 
-  commandHandler = async (ctx) => {
+  commandHandler = async ctx => {
     if (!(await super.commandHandler(ctx))) {
       return;
     }
 
-    const mention = ctx.message.entities.filter((e) => e.type === 'mention')[0];
+    const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention) {
       return ctx.reply('Who would you like to pat?');
@@ -90,33 +90,33 @@ class Pat extends Command {
 
     const patted = await db.user.findUnique({
       where: {
-        username: pattedUsername,
-      },
+        username: pattedUsername
+      }
     });
 
     if (patted) {
       pattedName = patted.displayName;
     } else {
-      return ctx.reply("I don't know them.");
+      return ctx.reply('I don\'t know them.');
     }
 
     const patter = await db.user.findUnique({
       where: {
-        telegramId: ctx.message.from.id,
-      },
+        telegramId: ctx.message.from.id
+      }
     });
 
     await db.pat.create({
       data: {
         patterId: patter.id,
-        pattedId: patted.id,
-      },
+        pattedId: patted.id
+      }
     });
 
     const opt = ctx.message.reply_to_message
       ? {
-          reply_to_message_id: ctx.message.reply_to_message.message_id,
-        }
+        reply_to_message_id: ctx.message.reply_to_message.message_id
+      }
       : null;
 
     return ctx.replyWithMarkdown(
@@ -142,7 +142,7 @@ class Hug extends Command {
       var username = ctx.message.text.split(' ').slice(1).join(' ');
     } else {
       return ctx.reply('Who would you like to hug?', {
-        reply_to_message_id: ctx.message.message_id,
+        reply_to_message_id: ctx.message.message_id
       });
     }
 
@@ -153,8 +153,8 @@ class Hug extends Command {
 
     const user = db.user.findUnique({
       where: {
-        username,
-      },
+        username
+      }
     });
 
     let maybeDisplayName = username;
@@ -166,12 +166,12 @@ class Hug extends Command {
 
     const opt = ctx.message.reply_to_message
       ? {
-          caption,
-          reply_to_message_id: ctx.message.reply_to_message.message_id,
-        }
+        caption,
+        reply_to_message_id: ctx.message.reply_to_message.message_id
+      }
       : {
-          caption,
-        };
+        caption
+      };
 
     return ctx.replyWithPhoto(result, opt);
   }

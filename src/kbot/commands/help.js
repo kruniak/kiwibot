@@ -24,12 +24,12 @@ class BotHelp extends Command {
 
     let message;
     switch (command) {
-      case 'randpost':
-        message = `usage: ${command} [tags]`;
-        break;
-      default:
-        message = `command /${command} does not exist`;
-        break;
+    case 'randpost':
+      message = `usage: ${command} [tags]`;
+      break;
+    default:
+      message = `command /${command} does not exist`;
+      break;
     }
 
     return ctx.reply(message, {

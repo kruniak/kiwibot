@@ -15,7 +15,9 @@
 
 ## 0.2.1 roadmap
 
-- [ ] send booru posts with post url message after pic (without preview)
+- [x] send booru posts with post url message after pic (without preview)
+
+- [ ] fix interaction commands not working properly for both mentions and replies
 
 - [ ] pet / pat might use stickers instead of nothing or image, as well as hug, depending on idontknowwhatyet
 
