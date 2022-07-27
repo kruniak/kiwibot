@@ -147,6 +147,9 @@ class Hug extends Command {
     }
 
     const result = await api.getRandomPostFromTags('hugging affection');
+    if (!result.imgUrl) {
+      return ctx.reply('I couldn\'t find anything for some reason.');
+    }
 
     // TODO: check if we have username in db: if so, print displayName instead
     // NOTE: i think username changes could lead to inconsistencies in edge-cases
@@ -173,7 +176,7 @@ class Hug extends Command {
         caption
       };
 
-    return ctx.replyWithPhoto(result, opt);
+    return ctx.replyWithPhoto(result.imgUrl, opt);
   }
 }
 
