@@ -154,7 +154,7 @@ class Hug extends Command {
     // TODO: check if we have username in db: if so, print displayName instead
     // NOTE: i think username changes could lead to inconsistencies in edge-cases
 
-    const user = db.user.findUnique({
+    const user = await db.user.findUnique({
       where: {
         username
       }
