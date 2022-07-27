@@ -1,4 +1,3 @@
-const { on } = require('nodemon');
 const { Telegraf } = require('telegraf');
 
 const db = require('../db');
