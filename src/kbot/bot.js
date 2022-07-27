@@ -1,3 +1,4 @@
+const { on } = require('nodemon');
 const { Telegraf } = require('telegraf');
 
 const db = require('../db');
@@ -110,6 +111,8 @@ class Bot {
 
         return next();
       }
+
+      bot.start();
 
       // create new user record
       await db.user.create({

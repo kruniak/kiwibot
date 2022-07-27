@@ -55,13 +55,12 @@ class EXXXApi {
         }
       });
 
-      posts = res.data;
+      posts = res.data.posts;
     } catch (ex) {
       return 'Bot failure or service down.';
     }
 
-    // FIXME: doesnt work properly
-    if (!posts || posts.length === 0) {
+    if (posts.length === 0) {
       return 'Nothing found 😿';
     }
 
