@@ -5,10 +5,6 @@ axios.defaults.headers.get = {
   'User-Agent': 'SFW bot for a small group of friends and practice'
 };
 
-// !!!!!!!!
-// TODO: nsfw json blacklist
-//
-
 class EXXXApi {
   constructor() {
     this.nsfw = false;
@@ -25,11 +21,14 @@ class EXXXApi {
     //  (handle inexistent tags, max api calls per secs, better api usage etc...)
 
     // hardcode homo stuff for now.
-    // TODO: global/user settings eventually...
+    // TODO: global/user settings eventually... and blacklist
 
     tags += ' male/male';
 
-    // provisionary nsfl blacklist
+
+    // !!!!!!!!
+    // TODO: nsfw json blacklist
+    //
     tags = tags
       .replace('cub', '')
       .replace('age_difference', '')
@@ -67,7 +66,7 @@ class EXXXApi {
     const post = posts[Math.floor(Math.random() * posts.length)];
 
     // TODO: check if animation?
-      
+
     const imgUrl = post.file.url;
     const postId = post.id;
 
