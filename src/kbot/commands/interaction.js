@@ -150,7 +150,7 @@ class Hug extends Command {
 
     const result = await api.getRandomPostFromTags('hugging affection');
     if (!result.imgUrl) {
-      return ctx.reply('I couldn\'t find anything for some reason.');
+      return ctx.reply('I couldn\'t find anything for some reason. I sincerely apologize.');
     }
 
     // TODO: check if we have username in db: if so, print displayName instead

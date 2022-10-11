@@ -21,31 +21,36 @@
 
 - [ ] pet / pat might use stickers instead of nothing or image, as well as hug, depending on idontknowwhatyet
 
-- [ ] save sticker set ids so that the bot will try to retrieve a matching sticker from the category and set that was selected by the user (/favestickers idx /listsets with indexes (stores stickerset ids) /unfavestickerset idx). if none was found it will just send some random one
-
-- [ ] maybe send "Loading..." reply message on commands that call apis, then delete it once the result is returned
+- [ ] limit /randpost to 1 request every 2s globally (and maybe warn users sometimes they have to wait? e621 suggests a max of 2 requests per second)
 
 ## 0.2.2 roadmap
 
-- [ ] randpost 1 request every 10s per user
+- [ ] save sticker set ids so that the bot will try to retrieve a matching sticker from the category and set that was selected by the user (/favestickers idx /listsets with indexes (stores stickerset ids) /unfavestickerset idx). if none was found it will just send some random one
 
-- [ ] max two e926 requests per second as the docs state
+## 0.3.0 roadmap
 
-- [ ] admin post tags blacklist add/remove commands
+- [ ] user profiles (WIP design)
 
-- [ ] GLaDOS praise command (reply, mention, then voice reply or voice)
+- [ ] commands that retrieve images should return these depending on profile anthro/feral species
 
-
-# 0.3.0 roadmap
+## 0.4.0 roadmap
 
 - [ ] improve EXXXApi.js, add booru commands and extend functionality
 
-- [ ] italian localization
+- [ ] admin post tags blacklist add/remove commands
 
 - [ ] admin stickers management
 
+## 0.5.0
+
+- [ ] localization (italian as a priority)
+
 
 ## backlog
+
+- [ ] maybe send "Loading..." reply message on commands that call apis, then delete it once the result is returned (I'm fairly sure we need mtproto or something to read the client)
+
+- [ ] GLaDOS praise command (reply, mention, then voice reply or voice)
 
 - [ ] booru posts should be globally or user settable as straight / bisexual / gay
 
