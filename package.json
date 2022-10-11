@@ -10,6 +10,7 @@
   },
   "author": "kruniak",
   "license": "MIT",
+  "private": true,
   "dependencies": {
     "@prisma/client": "^4.4.0",
     "axios": "^1.1.2",
