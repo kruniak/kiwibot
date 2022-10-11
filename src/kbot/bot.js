@@ -64,7 +64,7 @@ class Bot {
         where: {
           telegramId: senderId
         }
-      });
+      })
 
       const admins = await bot.telegram.getChatAdministrators(ctx.chat.id);
       const isAdmin = Boolean(

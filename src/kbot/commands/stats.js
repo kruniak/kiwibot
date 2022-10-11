@@ -22,6 +22,7 @@ class PetStats extends Command {
       mention.offset + mention.length + 1
     );
 
+    
     const petter = await db.user.findUnique({
       where: {
         username: petterUsername

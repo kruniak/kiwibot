@@ -23,6 +23,8 @@ class RandomPostFromTags extends Command {
       return;
     }
 
+    // TODO: check if replying
+
     if (ctx.message.text.split(' ').length > 1) {
       var tags = ctx.message.text.split(' ').slice(1).join(' ').trim();
     } else {

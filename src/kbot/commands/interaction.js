@@ -138,6 +138,8 @@ class Hug extends Command {
 
     const senderName = ctx.message.from.first_name;
 
+    // TODO: check if reply_to_message is not null (replying to a message),
+    //  allow it together with mentioning
     if (ctx.message.text.split(' ').length === 2) {
       var username = ctx.message.text.split(' ').slice(1).join(' ');
     } else {
