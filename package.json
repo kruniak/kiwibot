@@ -12,17 +12,17 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@prisma/client": "^4.4.0",
+    "@prisma/client": "^4.5.0",
     "axios": "^1.1.2",
     "dotenv": "^16.0.3",
     "http-server": "^14.1.1",
     "telegraf": "^4.10.0"
   },
   "devDependencies": {
-    "eslint": "^8.25.0",
+    "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
-    "prisma": "^4.4.0"
+    "prisma": "^4.5.0"
   }
 }
