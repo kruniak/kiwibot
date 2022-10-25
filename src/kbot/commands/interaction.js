@@ -137,11 +137,16 @@ class Hug extends Command {
     }
 
     const senderName = ctx.message.from.first_name;
+    const replyToMessage = ctx.message.reply_to_message;
 
-    // TODO: check if reply_to_message is not null (replying to a message),
-    //  allow it together with mentioning
+    let username;
+    let userRepliedId;
+
+    //  allow mentions
     if (ctx.message.text.split(' ').length === 2) {
-      var username = ctx.message.text.split(' ').slice(1).join(' ');
+      username = ctx.message.text.split(' ').slice(1).join(' ');
+    } else if (replyToMessage) {
+      userRepliedId = replyToMessage.id;
     } else {
       return ctx.reply('Who would you like to hug?', {
         reply_to_message_id: ctx.message.message_id
@@ -153,26 +158,34 @@ class Hug extends Command {
       return ctx.reply('I couldn\'t find anything for some reason. I sincerely apologize.');
     }
 
-    // TODO: check if we have username in db: if so, print displayName instead
-    // NOTE: i think username changes could lead to inconsistencies in edge-cases
+    // check if we have username in db: if so, print displayName instead
+    // NOTE: i'm pretty sure username changes could lead to inconsistencies in edge-cases
 
-    const user = await db.user.findUnique({
-      where: {
-        username
-      }
-    });
+    let user;
+    if (username) {
+      user = await db.user.findUnique({
+        where: {
+          id: userRepliedId
+        }
+      });
+    } else {
+      user = await db.user.findUnique({
+        where: {
+          id: userRepliedId
+        }
+      });
+    }
 
-    let maybeDisplayName = username;
     if (user) {
-      maybeDisplayName = !user.displayName ? username : user.displayName;
+      var maybeDisplayName = !user.displayName ? username : user.displayName;
     }
 
     const caption = `${senderName} hugs ${maybeDisplayName}`;
 
-    const opt = ctx.message.reply_to_message
+    const opt = replyToMessage
       ? {
         caption,
-        reply_to_message_id: ctx.message.reply_to_message.message_id
+        reply_to_message_id: replyToMessage.message_id
       }
       : {
         caption

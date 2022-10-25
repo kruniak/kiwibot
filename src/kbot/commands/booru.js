@@ -23,7 +23,7 @@ class RandomPostFromTags extends Command {
       return;
     }
 
-    // TODO: check if replying
+    // TODO: check if replying?
 
     if (ctx.message.text.split(' ').length > 1) {
       var tags = ctx.message.text.split(' ').slice(1).join(' ').trim();
@@ -38,10 +38,10 @@ class RandomPostFromTags extends Command {
 
     // FIXME: find a better solution
     if (!isValidUrl(result.imgUrl) || !isValidUrl(result.postUrl)) {
-      return ctx.reply('Something weird just happened.');
+      return ctx.reply('Something went wrong or nothing was found 😿');
     }
 
-    // TODO: add a goto post button
+    // TODO: add a goto post button! and maybe show the author
 
     return ctx.replyWithPhoto(result.imgUrl, {
       allow_sending_without_reply: true,

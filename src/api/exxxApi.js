@@ -2,7 +2,7 @@ const axios = require('axios');
 
 axios.defaults.headers.get = {
   api_key: process.env.EXXX_KEY,
-  'User-Agent': 'SFW bot for a small group of friends and practice'
+  'User-Agent': 'mostly SFW telegram bot for a small group of floofs'
 };
 
 class EXXXApi {
@@ -20,15 +20,17 @@ class EXXXApi {
     // TODO: fix and improve the following
     //  (handle inexistent tags, max api calls per secs, better api usage etc...)
 
-    // hardcode homo stuff for now.
+    // hardcode homo k9 stuff for now.
     // TODO: global/user settings eventually... and blacklist
 
-    tags += ' male/male';
-
+    tags += ' male/male canine';
 
     // !!!!!!!!
     // TODO: nsfw json blacklist
     //
+
+    // FIXME: underscores dont work?
+
     tags = tags
       .replace('cub', '')
       .replace('age_difference', '')
@@ -39,18 +41,20 @@ class EXXXApi {
 
     tags += ' -cub -age_difference -loli -incest';
 
+    tags = encodeURIComponent(tags);
+
     let posts = [];
     try {
       const res = await axios.get(`${this.baseUrl}/posts.json`, {
         headers: {
           // do not cache anything
           'Cache-Control': 'no-cache, no-store, must-revalidate',
-          Pragma: 'no-cache',
+          // Pragma: 'no-cache',
           Expires: '0'
         },
         params: {
-          limit: 100,
-          tags: tags
+          limit: 300,
+          tags
         }
       });
 
@@ -60,7 +64,7 @@ class EXXXApi {
     }
 
     if (posts.length === 0) {
-      return 'Nothing found 😿';
+      return {};
     }
 
     const post = posts[Math.floor(Math.random() * posts.length)];
@@ -72,7 +76,7 @@ class EXXXApi {
 
     return {
       imgUrl: imgUrl,
-      postUrl: this.baseUrl + '/posts/' + postId
+      postUrl: `${this.baseUrl}/posts/${postId}`
     };
   };
 
