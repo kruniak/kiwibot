@@ -12,7 +12,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@prisma/client": "^4.5.0",
+    "@prisma/client": "^4.7.1",
     "axios": "^1.1.2",
     "dotenv": "^16.0.3",
     "http-server": "^14.1.1",
