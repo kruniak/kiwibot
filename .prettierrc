@@ -1,9 +1,14 @@
 {
+  "printWidth": 80,
   "tabWidth": 2,
   "useTabs": false,
   "semi": true,
-  "endOfLine": "crlf",
   "singleQuote": true,
+  "quoteProps": "as-needed",
+  "trailingComma": "none",
+  "bracketSpacing": true,
   "arrowParens": "avoid",
-  "trailingComma": "none"
+  "parser": "typescript",
+  "proseWrap": "always",
+  "endOfLine": "crlf"
 }

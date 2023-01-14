@@ -15,6 +15,8 @@ const common = require('./core/common');
 
 const bot = require('./kbot/bot');
 
-console.log(`${common.projectName} v${common.version} running on nodejs ${process.version}`);
+console.log(
+  `${common.projectName} v${common.version} running on nodejs ${process.version}`
+);
 
 bot.run();

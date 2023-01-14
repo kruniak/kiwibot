@@ -36,7 +36,8 @@ class Bot {
           return ctx.reply('hello?');
         } else {
           return ctx.replyWithVoice(
-            `https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${Math.floor(Math.random() * 9) + 1
+            `https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${
+              Math.floor(Math.random() * 9) + 1
             }.ogg`,
             {
               reply_to_message_id: ctx.message.message_id

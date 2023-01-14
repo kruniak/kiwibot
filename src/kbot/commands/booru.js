@@ -23,6 +23,9 @@ class RandomPostFromTags extends Command {
       return;
     }
 
+    // TODO: fix exxxAPI
+    return ctx.reply('Service under maintenance.');
+
     // TODO: check if replying?
 
     if (ctx.message.text.split(' ').length > 1) {

@@ -1,9 +1,0 @@
-{
-  "name": "kiwibot",
-  "description": "a cool tg bot",
-  "repository": "https://github.com/drake-321/kiwibot",
-  "logo": "https://node-js-sample.herokuapp.com/node.png",
-  "engines": {
-    "node": "16.x"
-  }
-}

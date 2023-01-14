@@ -34,7 +34,7 @@ class Pet extends Command {
     if (petted) {
       pettedName = petted.displayName;
     } else {
-      return ctx.reply('I don\'t know them.');
+      return ctx.reply("I don't know them.");
     }
 
     const petter = await db.user.findUnique({
@@ -52,8 +52,8 @@ class Pet extends Command {
 
     const opt = ctx.message.reply_to_message
       ? {
-        reply_to_message_id: ctx.message.reply_to_message.message_id
-      }
+          reply_to_message_id: ctx.message.reply_to_message.message_id
+        }
       : null;
 
     return ctx.replyWithMarkdown(
@@ -97,7 +97,7 @@ class Pat extends Command {
     if (patted) {
       pattedName = patted.displayName;
     } else {
-      return ctx.reply('I don\'t know them.');
+      return ctx.reply("I don't know them.");
     }
 
     const patter = await db.user.findUnique({
@@ -115,8 +115,8 @@ class Pat extends Command {
 
     const opt = ctx.message.reply_to_message
       ? {
-        reply_to_message_id: ctx.message.reply_to_message.message_id
-      }
+          reply_to_message_id: ctx.message.reply_to_message.message_id
+        }
       : null;
 
     return ctx.replyWithMarkdown(
@@ -155,7 +155,9 @@ class Hug extends Command {
 
     const result = await api.getRandomPostFromTags('hugging affection');
     if (!result.imgUrl) {
-      return ctx.reply('I couldn\'t find anything for some reason. I sincerely apologize.');
+      return ctx.reply(
+        "I couldn't find anything for some reason. I sincerely apologize."
+      );
     }
 
     // check if we have username in db: if so, print displayName instead
@@ -184,12 +186,12 @@ class Hug extends Command {
 
     const opt = replyToMessage
       ? {
-        caption,
-        reply_to_message_id: replyToMessage.message_id
-      }
+          caption,
+          reply_to_message_id: replyToMessage.message_id
+        }
       : {
-        caption
-      };
+          caption
+        };
 
     return ctx.replyWithPhoto(result.imgUrl, opt);
   }

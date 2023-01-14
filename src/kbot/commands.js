@@ -3,7 +3,7 @@ const InteractionCommands = require('./commands/interaction');
 const StatsCommands = require('./commands/stats');
 const BooruCommands = require('./commands/booru');
 const MiscCommands = require('./commands/misc');
-const NsfwManagementCommands = require('./commands/admin/nsfwManagement');
+const NsfwManagementCommands = require('./commands/settings/nsfwManagement');
 
 const commandsList = [
   ...HelpCommands,

@@ -50,8 +50,8 @@ const stickerCommandHandler = async ctx => {
 
   const opt = replyToMessage
     ? {
-      reply_to_message_id: replyToMessage.message_id
-    }
+        reply_to_message_id: replyToMessage.message_id
+      }
     : null;
 
   return ctx.replyWithSticker(stickerFileId, opt);

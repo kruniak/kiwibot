@@ -2,7 +2,8 @@ const axios = require('axios');
 
 axios.defaults.headers.get = {
   api_key: process.env.EXXX_KEY,
-  'User-Agent': 'mostly SFW telegram bot for a small group of floofs'
+  'User-Agent':
+    'I do few API calls for a small (20 users) Telegram group :). Thank you <3. username: kiwibotfur. you can contact me by email if there are any issues or blackflag me and please inform me of any violations.'
 };
 
 class EXXXApi {
@@ -31,35 +32,27 @@ class EXXXApi {
 
     // FIXME: underscores dont work?
 
-    tags = tags
-      .replace('cub', '')
-      .replace('age_difference', '')
-      .replace('loli', '')
-      .replace('incest', '')
-      .replace(/\s+/g, ' ')
-      .trim();
+    // tags = tags
+    //   .replace('cub', '')
+    //   .replace('age_difference', '')
+    //   .replace('loli', '')
+    //   .replace('incest', '')
+    //   .replace(/\s+/g, ' ')
+    //   .trim();
 
-    tags += ' -cub -age_difference -loli -incest';
+    // tags += ' -cub -age_difference -loli -incest';
 
     tags = encodeURIComponent(tags);
 
     let posts = [];
     try {
-      const res = await axios.get(`${this.baseUrl}/posts.json`, {
-        headers: {
-          // do not cache anything
-          'Cache-Control': 'no-cache, no-store, must-revalidate',
-          // Pragma: 'no-cache',
-          Expires: '0'
-        },
-        params: {
-          limit: 300,
-          tags
-        }
-      });
+      const res = await axios.get(
+        `${this.baseUrl}/posts.json?limit=100&tags=${tags}`
+      );
 
       posts = res.data.posts;
     } catch (ex) {
+      console.log(ex);
       return 'Bot failure or service down.';
     }
 

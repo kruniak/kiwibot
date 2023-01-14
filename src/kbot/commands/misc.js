@@ -14,8 +14,8 @@ class PHello extends Command {
 
     const opt = ctx.message.reply_to_message
       ? {
-        reply_to_message_id: ctx.message.reply_to_message.message_id
-      }
+          reply_to_message_id: ctx.message.reply_to_message.message_id
+        }
       : null;
 
     return ctx.replyWithVoice(
@@ -52,4 +52,4 @@ class PHello extends Command {
 //   }
 // }
 
-module.exports = [new PHello(), /* new Roll() */ ];
+module.exports = [new PHello() /* new Roll() */];

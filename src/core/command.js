@@ -23,7 +23,7 @@ class Command {
     if (this.admin) {
       if (!user.admin) {
         ctx.replyWithMarkdown(
-          'You don\'t have the rights to use this command.',
+          "You don't have the rights to use this command.",
           {
             reply_to_message_id: ctx.message.message_id
           }

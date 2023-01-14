@@ -22,7 +22,6 @@ class PetStats extends Command {
       mention.offset + mention.length + 1
     );
 
-    
     const petter = await db.user.findUnique({
       where: {
         username: petterUsername
@@ -33,7 +32,7 @@ class PetStats extends Command {
     });
 
     if (!petter) {
-      return ctx.reply('I don\'t know them, sorry.');
+      return ctx.reply("I don't know them, sorry.");
     }
 
     // let rand = Math.random() * 100;
@@ -85,7 +84,7 @@ class PatStats extends Command {
     });
 
     if (!patter) {
-      return ctx.reply('I don\'t know them, sorry.');
+      return ctx.reply("I don't know them, sorry.");
     }
 
     return ctx.replyWithMarkdown(

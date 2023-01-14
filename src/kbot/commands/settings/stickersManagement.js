@@ -194,7 +194,6 @@
 //   new AddSticker()
 // ];
 
-
 // TODO: old code to redo
 
 // let chatId = null;
@@ -204,7 +203,6 @@
 // let user_id = '';
 // let stickerId = '';
 // let stickerSetName = '';
-
 
 // chatId = ctx.message.chat.id;
 
