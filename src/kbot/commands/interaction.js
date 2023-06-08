@@ -62,7 +62,10 @@ class Pet extends Command {
         }
       : null;
 
-    return ctx.replyWithMarkdown(`${petter.displayName} _pets_ ${pettedName}.`, opt);
+    return ctx.replyWithMarkdown(
+      `${petter.displayName} _pets_ ${pettedName}.`,
+      opt
+    );
 
     // TODO: send a sticker too
   };
@@ -159,9 +162,7 @@ class Hug extends Command {
 
     const result = await api.getRandomPostFromTags('hugging');
     if (!result.imgUrl) {
-      return ctx.reply(
-        "I couldn't find anything for some reason. :("
-      );
+      return ctx.reply("I couldn't find anything for some reason. :(");
     }
 
     // check if we have username in db: if so, print displayName instead

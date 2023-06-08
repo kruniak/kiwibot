@@ -111,7 +111,7 @@ class Bot {
 
         return next();
       }
-      
+
       // XXX: why this? can't remember
       bot.start();
 

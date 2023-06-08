@@ -36,11 +36,11 @@ const registerAllCommands = async bot => {
       .sort((a, b) => a.commandString.localeCompare(b.commandString))
       .map(cmd => `• ${cmd.commandString}`)
       .join('\n')
-      .trim()}`
+      .trim()}`;
 
-      return bot.telegram.sendMessage(userId, message, {
-        reply_to_message: ctx.message.message_id
-      });
+    return bot.telegram.sendMessage(userId, message, {
+      reply_to_message: ctx.message.message_id
+    });
   });
 };
 

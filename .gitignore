@@ -108,4 +108,6 @@ dist
 ###
 assets/**
 
+.vscode/**
+
 _testground.js
