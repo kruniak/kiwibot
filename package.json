@@ -2,7 +2,7 @@
   "name": "kiwibot",
   "version": "0.3.0",
   "description": "a curiously advanced bot",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
     "debug": "nodemon src/index.js -e js",
