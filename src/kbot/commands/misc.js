@@ -29,27 +29,39 @@ class PHello extends Command {
   }
 }
 
-// class Roll extends Command {
-//   constructor() {
-//     super('roll');
-//   }
+class Roll extends Command {
+  constructor() {
+    super('roll');
+  }
 
-//   async commandHandler(ctx) {
-//     if (!(await super.commandHandler(ctx))) {
-//       return;
-//     }
+  async commandHandler(ctx) {
+    if (!(await super.commandHandler(ctx))) {
+      return;
+    }
 
-//     const senderId = ctx.message.from.id;
+    const messageId = ctx.message.message_id;
 
-//     const rollString = ctx.message.text.split(' ')[1];
-//     const dieSides = parseInt(rollString.substring(1, rollString.length - 1));
+    const rollString = ctx.message.text.split(' ')[1];
+    if (!rollString || !/^d\d+$/i.test(rollString)) {
+      return ctx.reply(
+        'Invalid roll format. Please use the format: /roll d<number>'
+      );
+    }
 
-//     const result = Math.floor(Math.random() * dieSides);
+    const dieSides = parseInt(rollString.substring(1));
 
-//     return ctx.reply(result, {
-//       reply_to_message_id: senderId
-//     });
-//   }
-// }
+    if (isNaN(dieSides)) {
+      return ctx.reply(
+        'Invalid roll format. Please use the format: /roll d<number>'
+      );
+    }
 
-module.exports = [new PHello() /* new Roll() */];
+    const result = Math.floor(Math.random() * dieSides) + 1;
+
+    return ctx.reply(result.toString(), {
+      reply_to_message_id: messageId
+    });
+  }
+}
+
+module.exports = [new PHello(), new Roll()];
