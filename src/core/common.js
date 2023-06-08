@@ -1,4 +1,4 @@
 module.exports = {
   projectName: 'kiwibot-BETA',
-  version: '0.2.0-1'
+  version: '0.3.0'
 };
