@@ -42,7 +42,10 @@ class Roll extends Command {
     const messageId = ctx.message.message_id;
 
     const rollString = ctx.message.text.split(' ')[1];
-    if (!rollString || !/^d\d+$/i.test(rollString)) {
+    if (!rollString) {
+      return ctx.sendDice();
+    }
+    else if (!/^d\d+$/i.test(rollString)) {
       return ctx.reply(
         'Invalid roll format. Please use the format: /roll d<number>'
       );

@@ -23,19 +23,18 @@
 
 - [ ] fix interaction commands not working properly for both mentions and replies
 
-- [ ] pet / pat might use stickers instead of nothing or image, as well as hug, depending on idontknowwhatyet
-
-- [ ] limit /randpost to 1 request every 2s globally (and maybe warn users sometimes they have to wait? e621 suggests a max of 2 requests per second)
-
-## 0.2.2 roadmap
-
-- [ ] save sticker set ids so that the bot will try to retrieve a matching sticker from the category and set that was selected by the user (/favestickers idx /listsets with indexes (stores stickerset ids) /unfavestickerset idx). if none was found it will just send some random one
-
 ## 0.3.0 roadmap
 
 - [ ] user profiles (WIP design)
 
 - [ ] commands that retrieve images should return these depending on profile anthro/feral species
+
+- [ ] pet / pat might use stickers instead of nothing or image, as well as hug, depending on idontknowwhatyet
+
+- [ ] limit /randpost to 1 request every 2s globally (and maybe warn users sometimes they have to wait? e621 suggests a max of 2 requests per second)
+
+- [ ] save sticker set ids so that the bot will try to retrieve a matching sticker from the category and set that was selected by the user (/favestickers idx /listsets with indexes (stores stickerset ids) /unfavestickerset idx). if none was found it will just send some random one
+
 
 ## 0.4.0 roadmap
 
