@@ -15,7 +15,9 @@
 
 ## 0.2.1 roadmap
 
-- [ ] update username when user changes it
+- [ ] kiwiki command
+
+- [ ] update username when user changes it (already works??)
 
 - [x] send booru posts with post url message after pic (without preview)
 

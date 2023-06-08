@@ -14,16 +14,22 @@ class Pet extends Command {
 
     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
-    if (!mention) {
+    if (!mention && !ctx.message.reply_to_message) {
       return ctx.reply('Who would you like to pet?');
     }
 
     let pettedName;
 
-    const pettedUsername = ctx.message.text.substring(
-      mention.offset + 1,
-      mention.offset + mention.length + 1
-    );
+    let pettedUsername;
+    if (mention) {
+      pettedUsername = ctx.message.text.substring(
+        mention.offset + 1,
+        mention.offset + mention.length + 1
+      );
+    } else if (ctx.message.reply_to_message) {
+      pettedUsername = ctx.message.reply_to_message.from.username;
+      pettedName = ctx.message.reply_to_message.from.first_name;
+    }
 
     const petted = await db.user.findUnique({
       where: {
@@ -56,15 +62,13 @@ class Pet extends Command {
         }
       : null;
 
-    return ctx.replyWithMarkdown(
-      `${petter.displayName} _pets_ ${pettedName}.`,
-      opt
-    );
+    return ctx.replyWithMarkdown(`${petter.displayName} _pets_ ${pettedName}.`, opt);
 
-    // TODO: send stickers too!
+    // TODO: send a sticker too
   };
 }
 
+// TODO: fix like /pet
 class Pat extends Command {
   constructor() {
     super('pat');
@@ -146,17 +150,17 @@ class Hug extends Command {
     if (ctx.message.text.split(' ').length === 2) {
       username = ctx.message.text.split(' ').slice(1).join(' ');
     } else if (replyToMessage) {
-      userRepliedId = replyToMessage.id;
+      userRepliedId = replyToMessage.from.id;
     } else {
       return ctx.reply('Who would you like to hug?', {
         reply_to_message_id: ctx.message.message_id
       });
     }
 
-    const result = await api.getRandomPostFromTags('hugging affection');
+    const result = await api.getRandomPostFromTags('hugging');
     if (!result.imgUrl) {
       return ctx.reply(
-        "I couldn't find anything for some reason. I sincerely apologize."
+        "I couldn't find anything for some reason. :("
       );
     }
 

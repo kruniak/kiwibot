@@ -35,24 +35,13 @@ class PetStats extends Command {
       return ctx.reply("I don't know them, sorry.");
     }
 
-    // let rand = Math.random() * 100;
-    // const commentarySendRatePercentage = 8;
-    let shouldComment = false;
-
-    // if (rand < commentarySendRatePercentage) {
-    //   shouldComment = true;
-    // }
-
     return ctx.replyWithMarkdown(
-      `You have pet them *${petter.petsGiven.length}* times.${
-        shouldComment
-          ? ' Impressive.\n\nConsider_b03aed0x2222llllï♣ô}23bba7_ng that _CRITICAL ERROR_: _Morality.PetOperationHumanPhraseGenerator.Get()_ not implemented. Exception type: EXCEPT\\_NULL\\_REF.\nShutting down threads...\n\nFollowing protocol.\n*Reboot and humanity extinction imminent*...'
-          : ''
-      }`
+      `You have pet them *${petter.petsGiven.length}* times.`
     );
   };
 }
 
+// TODO: check reply_to_message
 class PatStats extends Command {
   constructor() {
     super('patstats');
