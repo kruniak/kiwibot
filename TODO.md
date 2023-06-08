@@ -1,6 +1,6 @@
 # TODOS
 
-## 0.2.0 roadmap
+## 0.3.0 roadmap
 
 - [x] handle commands in all/most replies (example reply to command with /angry or /pet etc...)
 
@@ -12,8 +12,10 @@
 
 - [x] *HALF-DONE* nsfw posts tags global blacklist
 
+- [x] migrate to new telegraf api
 
-## 0.2.1 roadmap
+
+## 0.3.1 roadmap
 
 - [ ] kiwiki command
 
@@ -23,7 +25,7 @@
 
 - [ ] fix interaction commands not working properly for both mentions and replies
 
-## 0.3.0 roadmap
+## 0.4.0 roadmap
 
 - [ ] user profiles (WIP design)
 
@@ -36,7 +38,7 @@
 - [ ] save sticker set ids so that the bot will try to retrieve a matching sticker from the category and set that was selected by the user (/favestickers idx /listsets with indexes (stores stickerset ids) /unfavestickerset idx). if none was found it will just send some random one
 
 
-## 0.4.0 roadmap
+## 0.5.0 roadmap
 
 - [ ] improve EXXXApi.js, add booru commands and extend functionality
 

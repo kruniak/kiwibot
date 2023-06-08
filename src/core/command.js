@@ -1,6 +1,6 @@
 const db = require('../db');
 
-const commandPrefix = '/';
+// const commandPrefix = '/';
 
 class Command {
   constructor(commandName, admin = false) {
