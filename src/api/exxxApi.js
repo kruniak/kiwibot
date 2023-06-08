@@ -3,7 +3,7 @@ const axios = require('axios');
 axios.defaults.headers.get = {
   api_key: process.env.EXXX_KEY,
   'User-Agent':
-    'I do few API calls for a small (20 users) Telegram group :). Thank you <3. username: kiwibotfur. you can contact me by email if there are any issues or blackflag me and please inform me of any violations.'
+    'I do few API calls for a small (20 users) Telegram group ~. Thank you <3.'
 };
 
 class EXXXApi {

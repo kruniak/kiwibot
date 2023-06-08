@@ -70,7 +70,7 @@ module.exports = (async function () {
   let stickerCommands = [];
   categories.forEach(c => {
     stickerCommands.push({
-      commandString: `/${c.name}`,
+      commandString: `${c.name}`,
       commandHandler: stickerCommandHandler
     });
   });

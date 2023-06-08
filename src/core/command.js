@@ -4,7 +4,9 @@ const commandPrefix = '/';
 
 class Command {
   constructor(commandName, admin = false) {
-    this.commandString = commandPrefix.concat(commandName);
+    // NOTE: porting this to new Telegraf version. There should be some
+    //  way of setting command prefix in the API
+    this.commandString = commandName; // commandPrefix.concat(commandName);
     this.admin = admin;
 
     this.commandHandler = this.commandHandler.bind(this);

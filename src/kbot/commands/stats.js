@@ -46,7 +46,7 @@ class PetStats extends Command {
     return ctx.replyWithMarkdown(
       `You have pet them *${petter.petsGiven.length}* times.${
         shouldComment
-          ? ' Impressive.\n\nConsider_b03aed0x2222llllï♣ô}23bba7_ng that _CRITICAL ERROR_: _Morality.PetOperationHumanPhraseGenerator.Get()_ not implemented. Exception type: EXCEPT\\_NULL\\_REF.\nShutting down threads...\n\nFollowing protocol.\n*Reboot imminent*...'
+          ? ' Impressive.\n\nConsider_b03aed0x2222llllï♣ô}23bba7_ng that _CRITICAL ERROR_: _Morality.PetOperationHumanPhraseGenerator.Get()_ not implemented. Exception type: EXCEPT\\_NULL\\_REF.\nShutting down threads...\n\nFollowing protocol.\n*Reboot and humanity extinction imminent*...'
           : ''
       }`
     );

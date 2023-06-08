@@ -15,6 +15,8 @@
 
 ## 0.2.1 roadmap
 
+- [ ] update username when user changes it
+
 - [x] send booru posts with post url message after pic (without preview)
 
 - [ ] fix interaction commands not working properly for both mentions and replies

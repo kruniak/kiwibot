@@ -1,4 +1,5 @@
 const { Telegraf } = require('telegraf');
+const { message } = require('telegraf/filters');
 
 const db = require('../db');
 const { registerAllCommands } = require('./commands');
@@ -28,7 +29,7 @@ class Bot {
   registerCoreEvents = () => {
     const { bot } = this;
 
-    bot.on('message', async (ctx, next) => {
+    bot.on(message('text'), async (ctx, next) => {
       // ignore private messages by not calling next
       //  (otherwise commands would be executed)
       if (ctx.chat.type === 'private') {
@@ -110,7 +111,8 @@ class Bot {
 
         return next();
       }
-
+      
+      // XXX: why this? can't remember
       bot.start();
 
       // create new user record
@@ -126,7 +128,7 @@ class Bot {
       return next();
     });
 
-    bot.on('new_chat_members', async (ctx, next) => {
+    bot.on(message('new_chat_members'), async (ctx, next) => {
       // TODO: check if not self. it will welcome itself when invited to a group
       ctx.replyWithVoice(
         'https://github.com/drake-321/drake-321.github.io/raw/main/part1_entry-1.ogg'

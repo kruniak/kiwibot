@@ -23,13 +23,9 @@ class RandomPostFromTags extends Command {
       return;
     }
 
-    // TODO: fix exxxAPI
-    return ctx.reply('Service under maintenance.');
-
-    // TODO: check if replying?
-
+    // "parse" tags
     if (ctx.message.text.split(' ').length > 1) {
-      var tags = ctx.message.text.split(' ').slice(1).join(' ').trim();
+      var tags = ctx.message.text.trim().split(/\s+/).slice(1).join(' ');
     } else {
       // NOTE: maybe allow full random search. check what API does.
       return ctx.reply('No tags specified.', {
