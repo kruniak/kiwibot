@@ -66,4 +66,28 @@ class Roll extends Command {
   }
 }
 
-module.exports = [new PHello(), new Roll()];
+class StickerInfo extends Command {
+  constructor() {
+    super('stinfo');
+  }
+
+  async commandHandler(ctx) {
+    if (!(await super.commandHandler(ctx))) {
+      return;
+    }
+
+    const repliedMessage = ctx.message.reply_to_message;
+    if (!repliedMessage) {
+      return ctx.reply('Reply to a sticker to print info about it');
+    }
+
+    const sticker = repliedMessage.sticker;
+    if (sticker) {
+      return ctx.reply(`file_id: ${sticker.file_id}`);
+    }
+
+    return ctx.reply('Not a sticker');
+  }
+}
+
+module.exports = [new PHello(), new Roll(), new StickerInfo()];

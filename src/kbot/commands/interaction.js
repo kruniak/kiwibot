@@ -62,12 +62,30 @@ class Pet extends Command {
         }
       : null;
 
-    return ctx.replyWithMarkdown(
-      `${petter.displayName} _pets_ ${pettedName}.`,
-      opt
-    );
+    // const category = await db.stickerCategory.findMany({
+    //   where: { name: 'pet' }
+    // });
 
-    // TODO: send a sticker too
+    // if (category.length) {
+    //   const stickers = await db.sticker.findMany({
+    //     where: {
+    //       categories: {
+    //         some: {
+    //           categoryId: category.id
+    //         }
+    //       }
+    //     }
+    //   });
+
+    //   const offset = Math.floor(Math.random() * stickers.length);
+
+    //   const stickerFileId = stickers[offset].file_id;
+
+    //   // Reply with a "pet" sticker
+    //   ctx.replyWithSticker(stickerFileId, opt);
+    // }
+
+    return ctx.replyWithMarkdown(`${petter.displayName} _pets_ ${pettedName}.`);
   };
 }
 
