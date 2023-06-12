@@ -13,4 +13,4 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=kiwidb
+      - POSTGRES_DB=postgres

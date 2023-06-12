@@ -17,6 +17,8 @@
 
 ## 0.3.1 roadmap
 
+- [ ] JSDoc _mostly_ everywhere because I can't autocomplete shit without typescript
+
 - [ ] kiwiki command
 
 - [ ] update username when user changes it (already works??)

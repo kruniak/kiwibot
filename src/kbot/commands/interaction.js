@@ -62,28 +62,28 @@ class Pet extends Command {
         }
       : null;
 
-    // const category = await db.stickerCategory.findMany({
-    //   where: { name: 'pet' }
-    // });
+    const category = await db.stickerCategory.findUnique({
+      where: { name: 'pet' }
+    });
 
-    // if (category.length) {
-    //   const stickers = await db.sticker.findMany({
-    //     where: {
-    //       categories: {
-    //         some: {
-    //           categoryId: category.id
-    //         }
-    //       }
-    //     }
-    //   });
+    if (category) {
+      const stickers = await db.sticker.findMany({
+        where: {
+          categories: {
+            some: {
+              categoryId: category.id
+            }
+          }
+        }
+      });
 
-    //   const offset = Math.floor(Math.random() * stickers.length);
+      const offset = Math.floor(Math.random() * stickers.length);
 
-    //   const stickerFileId = stickers[offset].file_id;
+      const stickerFileId = stickers[offset].file_id;
 
-    //   // Reply with a "pet" sticker
-    //   ctx.replyWithSticker(stickerFileId, opt);
-    // }
+      // Reply with a "pet" sticker
+      await ctx.replyWithSticker(stickerFileId, opt);
+    }
 
     return ctx.replyWithMarkdown(`${petter.displayName} _pets_ ${pettedName}.`);
   };
@@ -108,6 +108,7 @@ class Pat extends Command {
 
     let pattedName;
 
+    // FIXME: there should be a better way to get the mentioned username
     const pattedUsername = ctx.message.text.substring(
       mention.offset + 1,
       mention.offset + mention.length + 1
@@ -167,7 +168,7 @@ class Hug extends Command {
     let username;
     let userRepliedId;
 
-    //  allow mentions
+    // Allow mentions
     if (ctx.message.text.split(' ').length === 2) {
       username = ctx.message.text.split(' ').slice(1).join(' ');
     } else if (replyToMessage) {

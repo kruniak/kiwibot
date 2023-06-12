@@ -1,3 +1,4 @@
+const { Context } = require('telegraf');
 const Command = require('../../core/command');
 
 class PHello extends Command {
@@ -71,6 +72,9 @@ class StickerInfo extends Command {
     super('stinfo');
   }
 
+  /**
+   * @param {Context} ctx - Description of the object.
+   */
   async commandHandler(ctx) {
     if (!(await super.commandHandler(ctx))) {
       return;
@@ -83,7 +87,7 @@ class StickerInfo extends Command {
 
     const sticker = repliedMessage.sticker;
     if (sticker) {
-      return ctx.reply(`file_id: ${sticker.file_id}`);
+      return ctx.reply(`file_id: ${sticker.file_id}\n`);
     }
 
     return ctx.reply('Not a sticker');
