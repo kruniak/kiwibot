@@ -17,11 +17,13 @@
 
 ## 0.3.1 roadmap
 
-- [ ] JSDoc _mostly_ everywhere because I can't autocomplete shit without typescript
+- [ ] JSDoc _mostly_ everywhere because I can't autocomplete shit without typescript and I'm a trash programmer
+
+- [ ] add /favpet or something to select a favorite pet sticker
 
 - [ ] kiwiki command
 
-- [ ] update username when user changes it (already works??)
+- [x] update username when user changes it (already works??)
 
 - [x] send booru posts with post url message after pic (without preview)
 
@@ -55,6 +57,8 @@
 
 ## backlog
 
+- [ ] when replying /fav to a sticker that was triggered by a command, set that one sticker as favorite for the user
+
 - [ ] maybe send "Loading..." reply message on commands that call apis, then delete it once the result is returned (I'm fairly sure we need mtproto or something to read the client)
 
 - [ ] GLaDOS praise command (reply, mention, then voice reply or voice)
@@ -65,7 +69,7 @@
 
 - [ ] deploy / shutdown / changelog messages in chat
 
-- [ ] setup prettier
+- [x] setup prettier (done ig?)
 
 - [ ] for commands like /hug (that return images from tags), u could check a post for tags to see if they match with the user 'profile' (for example, only pick those posts where the "huggee" is a canine anthro, or take things like size into consideration)
 

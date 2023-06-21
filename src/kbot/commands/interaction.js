@@ -1,21 +1,28 @@
 const db = require('../../db');
 const api = require('../../api/exxxApi');
 const Command = require('../../core/command');
+const { Context } = require('telegraf');
 
 class Pet extends Command {
   constructor() {
     super('pet');
   }
 
+  /**
+   * @param {Context} ctx - Current context
+   */
   commandHandler = async ctx => {
     if (!(await super.commandHandler(ctx))) {
       return;
     }
 
+    // TODO: test petting multiple users
     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention && !ctx.message.reply_to_message) {
-      return ctx.reply('Who would you like to pet?');
+      return ctx.reply('/pet [mention]\nor just reply /pet', {
+        reply_to_message_id: ctx.message.message_id
+      });
     }
 
     let pettedName;
@@ -66,6 +73,7 @@ class Pet extends Command {
       where: { name: 'pet' }
     });
 
+    // Reply with a "pet" sticker (if available)
     if (category) {
       const stickers = await db.sticker.findMany({
         where: {
@@ -81,7 +89,6 @@ class Pet extends Command {
 
       const stickerFileId = stickers[offset].file_id;
 
-      // Reply with a "pet" sticker
       await ctx.replyWithSticker(stickerFileId, opt);
     }
 
@@ -95,6 +102,9 @@ class Pat extends Command {
     super('pat');
   }
 
+  /**
+   * @param {Context} ctx - Current context
+   */
   commandHandler = async ctx => {
     if (!(await super.commandHandler(ctx))) {
       return;
@@ -157,6 +167,9 @@ class Hug extends Command {
     super('hug');
   }
 
+  /**
+   * @param {Context} ctx - Current context
+   */
   async commandHandler(ctx) {
     if (!(await super.commandHandler(ctx))) {
       return;
@@ -170,18 +183,22 @@ class Hug extends Command {
 
     // Allow mentions
     if (ctx.message.text.split(' ').length === 2) {
-      username = ctx.message.text.split(' ').slice(1).join(' ');
+      username = ctx.message.text
+        .split(' ')
+        .slice(1)
+        .join(' ')
+        .replace('@', '');
     } else if (replyToMessage) {
       userRepliedId = replyToMessage.from.id;
     } else {
-      return ctx.reply('Who would you like to hug?', {
+      return ctx.reply('/hug [mention]\nor just reply /hug', {
         reply_to_message_id: ctx.message.message_id
       });
     }
 
     const result = await api.getRandomPostFromTags('hugging');
     if (!result.imgUrl) {
-      return ctx.reply("I couldn't find anything for some reason. :(");
+      return ctx.reply('Failed to find hugs. :<');
     }
 
     // check if we have username in db: if so, print displayName instead
@@ -191,13 +208,13 @@ class Hug extends Command {
     if (username) {
       user = await db.user.findUnique({
         where: {
-          id: userRepliedId
+          username: username
         }
       });
     } else {
       user = await db.user.findUnique({
         where: {
-          id: userRepliedId
+          telegramId: userRepliedId
         }
       });
     }

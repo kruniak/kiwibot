@@ -4,6 +4,7 @@ const StatsCommands = require('./commands/stats');
 const BooruCommands = require('./commands/booru');
 const MiscCommands = require('./commands/misc');
 const NsfwManagementCommands = require('./commands/settings/nsfwManagement');
+const { Telegraf } = require('telegraf');
 
 const commandsList = [
   ...HelpCommands,
@@ -14,6 +15,9 @@ const commandsList = [
   ...NsfwManagementCommands
 ];
 
+/**
+ * @param {Telegraf} bot - Current context
+ */
 const registerAllCommands = async bot => {
   commandsList.forEach(command => {
     bot.command(command.commandString, command.commandHandler);

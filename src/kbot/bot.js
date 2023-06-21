@@ -67,10 +67,10 @@ class Bot {
         }
       });
 
-      const admins = await bot.telegram.getChatAdministrators(ctx.chat.id);
-      const isAdmin = Boolean(
-        admins.find(member => member.user.id === senderId)
-      );
+      // const admins = await bot.telegram.getChatAdministrators(ctx.chat.id);
+      // const isAdmin = Boolean(
+      //   admins.find(member => member.user.id === senderId)
+      // );
 
       if (user) {
         if (user.username !== username) {
@@ -97,17 +97,17 @@ class Bot {
           });
         }
 
-        if (user.admin !== isAdmin) {
-          // update admin status
-          await db.user.update({
-            where: {
-              id: user.id
-            },
-            data: {
-              admin: isAdmin
-            }
-          });
-        }
+        // if (user.admin !== isAdmin) {
+        //   // update admin status
+        //   await db.user.update({
+        //     where: {
+        //       id: user.id
+        //     },
+        //     data: {
+        //       admin: isAdmin
+        //     }
+        //   });
+        // }
 
         return next();
       }

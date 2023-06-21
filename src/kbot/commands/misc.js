@@ -73,7 +73,7 @@ class StickerInfo extends Command {
   }
 
   /**
-   * @param {Context} ctx - Description of the object.
+   * @param {Context} ctx - Current context
    */
   async commandHandler(ctx) {
     if (!(await super.commandHandler(ctx))) {
@@ -82,12 +82,14 @@ class StickerInfo extends Command {
 
     const repliedMessage = ctx.message.reply_to_message;
     if (!repliedMessage) {
-      return ctx.reply('Reply to a sticker to print info about it');
+      return ctx.reply('Reply to a sticker to print info about it', {
+        reply_to_message_id: ctx.message.message_id
+      });
     }
 
     const sticker = repliedMessage.sticker;
     if (sticker) {
-      return ctx.reply(`file_id: ${sticker.file_id}\n`);
+      return ctx.reply(`file_id: ${sticker.file_id}`);
     }
 
     return ctx.reply('Not a sticker');
