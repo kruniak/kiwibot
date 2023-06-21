@@ -92,7 +92,7 @@ class Pet extends Command {
       await ctx.replyWithSticker(stickerFileId, opt);
     }
 
-    return ctx.replyWithMarkdown(`${petter.displayName} _pets_ ${pettedName}.`);
+    return ctx.replyWithMarkdownV2(`${petter.displayName} _pets_ ${pettedName}\\.`);
   };
 }
 
@@ -155,8 +155,8 @@ class Pat extends Command {
         }
       : null;
 
-    return ctx.replyWithMarkdown(
-      `${patter.displayName} _pats_ ${pattedName}.`,
+    return ctx.replyWithMarkdownV2(
+      `${patter.displayName} _pats_ ${pattedName}\\.`,
       opt
     );
   };
