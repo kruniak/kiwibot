@@ -4,6 +4,7 @@ const StatsCommands = require('./commands/stats');
 const BooruCommands = require('./commands/booru');
 const MiscCommands = require('./commands/misc');
 const NsfwManagementCommands = require('./commands/settings/nsfwManagement');
+const ProfilesCommands = require('./commands/profiles');
 const { Telegraf } = require('telegraf');
 
 const commandsList = [
@@ -12,7 +13,8 @@ const commandsList = [
   ...StatsCommands,
   ...BooruCommands,
   ...MiscCommands,
-  ...NsfwManagementCommands
+  ...NsfwManagementCommands,
+  ...ProfilesCommands
 ];
 
 /**

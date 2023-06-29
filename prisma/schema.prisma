@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = "debian-openssl-1.1.x"
 }
 
@@ -14,6 +14,7 @@ model User {
   username            String?             @unique
   displayName         String?
   admin               Boolean
+  about               String?
   patsReceived        Pat[]               @relation("patted")
   patsGiven           Pat[]               @relation("patter")
   petsReceived        Pet[]               @relation("petted")

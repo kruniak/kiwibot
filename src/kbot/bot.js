@@ -29,23 +29,34 @@ class Bot {
   registerCoreEvents = () => {
     const { bot } = this;
 
+    // TODO:
+    // // Array of allowed chat IDs
+    // const allowedChatIds = ['chat_id_1', 'chat_id_2', 'chat_id_3'];
+
     bot.on(message('text'), async (ctx, next) => {
       // ignore private messages by not calling next
       //  (otherwise commands would be executed)
       if (ctx.chat.type === 'private') {
-        if (Math.random() < 0.5 ? 0 : 1) {
-          return ctx.reply('hello?');
-        } else {
-          return ctx.replyWithVoice(
-            `https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${
-              Math.floor(Math.random() * 9) + 1
-            }.ogg`,
-            {
-              reply_to_message_id: ctx.message.message_id
-            }
-          );
-        }
+        // if (Math.random() < 0.5 ? 0 : 1) {
+        //   return ctx.reply('hello?');
+        // } else {
+        //   return ctx.replyWithVoice(
+        //     `https://github.com/drake-321/drake-321.github.io/raw/main/turret/turretstuckintube0${
+        //       Math.floor(Math.random() * 9) + 1
+        //     }.ogg`,
+        //     {
+        //       reply_to_message_id: ctx.message.message_id
+        //     }
+        //   );
+        // }
+
+        return next();
       }
+
+      // // Check if the chat ID is in the allowedChatIds array
+      // if (!allowedChatIds.includes(String(ctx.chat.id))) {
+      //   return;
+      // }
 
       const senderId = ctx.message.from.id;
 
@@ -112,7 +123,7 @@ class Bot {
         return next();
       }
 
-      // XXX: why this? can't remember
+      // XXX: why this here? can't remember
       bot.start();
 
       // create new user record

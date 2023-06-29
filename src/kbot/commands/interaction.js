@@ -11,7 +11,7 @@ class Pet extends Command {
   /**
    * @param {Context} ctx - Current context
    */
-  commandHandler = async ctx => {
+  commandHandler = async (ctx, next) => {
     if (!(await super.commandHandler(ctx))) {
       return;
     }
@@ -20,9 +20,12 @@ class Pet extends Command {
     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
     if (!mention && !ctx.message.reply_to_message) {
-      return ctx.reply('/pet [mention]\nor just reply /pet', {
-        reply_to_message_id: ctx.message.message_id
-      });
+      // return ctx.reply('/pet [mention]\nor just reply /pet', {
+      //   reply_to_message_id: ctx.message.message_id
+      // });
+
+      // Call the next handler and just reply with a sticker
+      return next();
     }
 
     let pettedName;
@@ -170,7 +173,7 @@ class Hug extends Command {
   /**
    * @param {Context} ctx - Current context
    */
-  async commandHandler(ctx) {
+  async commandHandler(ctx, next) {
     if (!(await super.commandHandler(ctx))) {
       return;
     }
@@ -191,9 +194,12 @@ class Hug extends Command {
     } else if (replyToMessage) {
       userRepliedId = replyToMessage.from.id;
     } else {
-      return ctx.reply('/hug [mention]\nor just reply /hug', {
-        reply_to_message_id: ctx.message.message_id
-      });
+      // return ctx.reply('/hug [mention]\nor just reply /hug', {
+      //   reply_to_message_id: ctx.message.message_id
+      // });
+
+      // Call the next handler and just reply with a sticker
+      return next();
     }
 
     const result = await api.getRandomPostFromTags('hugging');

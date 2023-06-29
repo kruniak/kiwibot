@@ -17,25 +17,25 @@
 
 ## 0.3.1 roadmap
 
-- [ ] JSDoc _mostly_ everywhere because I can't autocomplete shit without typescript and I'm a trash programmer
+- [x] JSDoc _mostly_ everywhere because I can't autocomplete shit without typescript and I'm a trash programmer
 
 - [ ] add /favpet or something to select a favorite pet sticker
-
-- [ ] kiwiki command
 
 - [x] update username when user changes it (already works??)
 
 - [x] send booru posts with post url message after pic (without preview)
 
-- [ ] fix interaction commands not working properly for both mentions and replies
+- [ ] fix all interaction commands not working properly for both mentions and replies
 
 ## 0.4.0 roadmap
 
-- [ ] user profiles (WIP design)
+- [ ] kiwiki command
+
+- [x] user profiles (WIP design)
 
 - [ ] commands that retrieve images should return these depending on profile anthro/feral species
 
-- [ ] pet / pat might use stickers instead of nothing or image, as well as hug, depending on idontknowwhatyet
+- [x] pet / pat might use stickers instead of nothing or image, as well as hug, depending on idontknowwhatyet
 
 - [ ] limit /randpost to 1 request every 2s globally (and maybe warn users sometimes they have to wait? e621 suggests a max of 2 requests per second)
 
@@ -78,5 +78,5 @@
 
 - [ ] turret or glados comment with text or voice sometimes whenever users are typing
 
-- [ ] maybe admin/user toggle nsfw sticker categories
+- [ ] admin/user toggle nsfw sticker categories
 
