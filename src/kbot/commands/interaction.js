@@ -99,71 +99,71 @@ class Pet extends Command {
   };
 }
 
-// TODO: fix like /pet
-class Pat extends Command {
-  constructor() {
-    super('pat');
-  }
+// // TODO: fix like /pet
+// class Pat extends Command {
+//   constructor() {
+//     super('pat');
+//   }
 
-  /**
-   * @param {Context} ctx - Current context
-   */
-  commandHandler = async ctx => {
-    if (!(await super.commandHandler(ctx))) {
-      return;
-    }
+//   /**
+//    * @param {Context} ctx - Current context
+//    */
+//   commandHandler = async ctx => {
+//     if (!(await super.commandHandler(ctx))) {
+//       return;
+//     }
 
-    const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
+//     const mention = ctx.message.entities.filter(e => e.type === 'mention')[0];
 
-    if (!mention) {
-      return ctx.reply('Who would you like to pat?');
-    }
+//     if (!mention) {
+//       return ctx.reply('Who would you like to pat?');
+//     }
 
-    let pattedName;
+//     let pattedName;
 
-    // FIXME: there should be a better way to get the mentioned username
-    const pattedUsername = ctx.message.text.substring(
-      mention.offset + 1,
-      mention.offset + mention.length + 1
-    );
+//     // FIXME: there should be a better way to get the mentioned username
+//     const pattedUsername = ctx.message.text.substring(
+//       mention.offset + 1,
+//       mention.offset + mention.length + 1
+//     );
 
-    const patted = await db.user.findUnique({
-      where: {
-        username: pattedUsername
-      }
-    });
+//     const patted = await db.user.findUnique({
+//       where: {
+//         username: pattedUsername
+//       }
+//     });
 
-    if (patted) {
-      pattedName = patted.displayName;
-    } else {
-      return ctx.reply("I don't know them.");
-    }
+//     if (patted) {
+//       pattedName = patted.displayName;
+//     } else {
+//       return ctx.reply("I don't know them.");
+//     }
 
-    const patter = await db.user.findUnique({
-      where: {
-        telegramId: ctx.message.from.id
-      }
-    });
+//     const patter = await db.user.findUnique({
+//       where: {
+//         telegramId: ctx.message.from.id
+//       }
+//     });
 
-    await db.pat.create({
-      data: {
-        patterId: patter.id,
-        pattedId: patted.id
-      }
-    });
+//     await db.pat.create({
+//       data: {
+//         patterId: patter.id,
+//         pattedId: patted.id
+//       }
+//     });
 
-    const opt = ctx.message.reply_to_message
-      ? {
-          reply_to_message_id: ctx.message.reply_to_message.message_id
-        }
-      : null;
+//     const opt = ctx.message.reply_to_message
+//       ? {
+//           reply_to_message_id: ctx.message.reply_to_message.message_id
+//         }
+//       : null;
 
-    return ctx.replyWithMarkdownV2(
-      `${patter.displayName} _pats_ ${pattedName}\\.`,
-      opt
-    );
-  };
-}
+//     return ctx.replyWithMarkdownV2(
+//       `${patter.displayName} _pats_ ${pattedName}\\.`,
+//       opt
+//     );
+//   };
+// }
 
 class Hug extends Command {
   constructor() {
@@ -246,4 +246,4 @@ class Hug extends Command {
 
 // TODO: class Kiss extends Command { ... }
 
-module.exports = [new Pet(), new Pat(), new Hug()];
+module.exports = [new Pet(), /* new Pat(), */ new Hug()];

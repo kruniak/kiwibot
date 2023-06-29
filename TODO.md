@@ -1,5 +1,8 @@
 # TODOS
 
+## NOTE
+this bot is and will always be trash
+
 ## 0.3.0 roadmap
 
 - [x] handle commands in all/most replies (example reply to command with /angry or /pet etc...)

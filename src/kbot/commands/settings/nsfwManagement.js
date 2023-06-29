@@ -1,6 +1,22 @@
 const api = require('../../../api/exxxApi');
 const Command = require('../../../core/command');
 
+class Nsfw extends Command {
+  constructor() {
+    super('nsfw', true);
+  }
+
+  async commandHandler(ctx) {
+    if (!(await super.commandHandler(ctx))) {
+      return;
+    }
+
+    return ctx.replyWithMarkdown(
+      `NSFW posts are *${api.nsfw ? 'enabled' : 'disabled'}*.`
+    );
+  }
+}
+
 class ToggleNsfwPosts extends Command {
   constructor() {
     super('togglensfw', true);
@@ -19,4 +35,4 @@ class ToggleNsfwPosts extends Command {
   }
 }
 
-module.exports = [new ToggleNsfwPosts()];
+module.exports = [new Nsfw(), new ToggleNsfwPosts()];
