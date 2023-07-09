@@ -1,4 +1,4 @@
-const db = require('../../db');
+const db = require('../../db').default;
 const api = require('../../api/exxxApi');
 const Command = require('../../core/command');
 const { Context } = require('telegraf');
@@ -95,7 +95,9 @@ class Pet extends Command {
       await ctx.replyWithSticker(stickerFileId, opt);
     }
 
-    return ctx.replyWithMarkdownV2(`${petter.displayName} _pets_ ${pettedName}\\.`);
+    // TODO: handle cases where display names have md tokens
+    // return ctx.replyWithMarkdownV2(`${petter.displayName} _pets_ ${pettedName}\\.`);
+    return ctx.reply(`${petter.displayName} pets ${pettedName}.`);
   };
 }
 

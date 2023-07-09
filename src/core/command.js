@@ -14,6 +14,7 @@ class Command {
 
   //
   // returns a boolean that indicates whether the command should be executed or not
+  // TODO: fake news, rename this
   //
   async commandHandler(ctx) {
     const user = await db.user.findUnique({

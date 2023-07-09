@@ -15,6 +15,7 @@ class About extends Command {
       return;
     }
 
+    // TODO: handle mentions
     const userId = ctx.message.reply_to_message.from.id;
 
     const data = await db.user.findUnique({
