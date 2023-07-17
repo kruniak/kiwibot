@@ -29,12 +29,11 @@ class Bot {
   registerCoreEvents = () => {
     const { bot } = this;
 
-    // TODO:
-    // // Array of allowed chat IDs
-    // const allowedChatIds = ['chat_id_1', 'chat_id_2', 'chat_id_3'];
+    // Array of allowed chat IDs
+    const allowedChatIds = ['-1001749379640' /*, '-1001787809187' */];
 
     bot.on(message('text'), async (ctx, next) => {
-      // ignore private messages by not calling next
+      // We can ignore private messages by not calling next
       //  (otherwise commands would be executed)
       if (ctx.chat.type === 'private') {
         // if (Math.random() < 0.5 ? 0 : 1) {
@@ -53,10 +52,11 @@ class Bot {
         return next();
       }
 
-      // // Check if the chat ID is in the allowedChatIds array
-      // if (!allowedChatIds.includes(String(ctx.chat.id))) {
-      //   return;
-      // }
+      // Check if the chat ID is in the allowedChatIds array,
+      //  otherwise return
+      if (!allowedChatIds.includes(String(ctx.chat.id))) {
+        return;
+      }
 
       const senderId = ctx.message.from.id;
 
@@ -68,10 +68,7 @@ class Bot {
         .join(' ')
         .trim();
 
-      //
-      // check existing and new users' basic data and update db
-      //
-
+      // Check existing and new users' basic data and update db
       const user = await db.user.findUnique({
         where: {
           telegramId: senderId
@@ -132,7 +129,7 @@ class Bot {
           telegramId: senderId,
           username,
           displayName,
-          admin: isAdmin
+          admin: false
         }
       });
 

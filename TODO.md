@@ -18,7 +18,7 @@ this bot is and will always be trash
 - [x] migrate to new telegraf api
 
 
-## 0.3.1 roadmap
+## 0.3.2 roadmap
 
 - [x] JSDoc _mostly_ everywhere because I can't autocomplete shit without typescript and I'm a trash programmer
 

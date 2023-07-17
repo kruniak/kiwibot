@@ -1,4 +1,4 @@
-const db = require('../../db').default;
+const db = require('../../db');
 const api = require('../../api/exxxApi');
 const Command = require('../../core/command');
 const { Context } = require('telegraf');
