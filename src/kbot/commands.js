@@ -25,7 +25,7 @@ const registerAllCommands = async bot => {
     bot.command(command.commandString, command.commandHandler);
   });
 
-  // register sticker commands
+  // Register sticker commands
   const stickerCommands = await (async function () {
     return await require('./stickers');
   })();
@@ -34,7 +34,7 @@ const registerAllCommands = async bot => {
     bot.command(stickerCommand.commandString, stickerCommand.commandHandler);
   });
 
-  // show stickers list
+  // Show stickers list
   bot.command('stickers', ctx => {
     const userId = ctx.message.from.id;
 

@@ -6,15 +6,15 @@ const { registerAllCommands } = require('./commands');
 
 class Bot {
   constructor(api_key) {
-    // bot client
+    // Bot client
     this.bot = new Telegraf(api_key);
 
-    // initialize bot
+    // Initialize bot
     this.init();
   }
 
   init = () => {
-    // initialize core functionality
+    // Initialize core functionality
     process.once('SIGINT', () => this.bot.stop('SIGINT'));
     process.once('SIGTERM', () => this.bot.stop('SIGTERM'));
 
@@ -29,12 +29,11 @@ class Bot {
   registerCoreEvents = () => {
     const { bot } = this;
 
-    // Array of allowed chat IDs
+    // Hardcoded array of allowed chat IDs
     const allowedChatIds = ['-1001749379640' /*, '-1001787809187' */];
 
     bot.on(message('text'), async (ctx, next) => {
-      // We can ignore private messages by not calling next
-      //  (otherwise commands would be executed)
+      // Handle private chat bot messages
       if (ctx.chat.type === 'private') {
         // if (Math.random() < 0.5 ? 0 : 1) {
         //   return ctx.reply('hello?');
@@ -49,6 +48,8 @@ class Bot {
         //   );
         // }
 
+        // We can ignore private messages by not calling next
+        //  (otherwise commands would be executed)
         return next();
       }
 
@@ -123,7 +124,7 @@ class Bot {
       // XXX: why this here? can't remember
       bot.start();
 
-      // create new user record
+      // Create new user record
       await db.user.create({
         data: {
           telegramId: senderId,

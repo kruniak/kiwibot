@@ -1,21 +1,19 @@
 const db = require('../db');
 
-//
-// stickers setup
-//
+// Stickers setup
 const stickerCommandHandler = async ctx => {
   const replyToMessage = ctx.message.reply_to_message;
 
-  // get sticker category
+  // Get sticker category
   let categoryName = ctx.message.text.slice(1);
 
-  // ignore command if it's followed by any words
+  // Ignore command if it's followed by any words
   // FIXME: improve
   if (categoryName.indexOf(' ') > -1) {
     return;
   }
 
-  // remove bot mention
+  // Remove bot mention
   if (categoryName.indexOf('@') > -1) {
     categoryName = categoryName.substring(0, categoryName.indexOf('@'));
   }
